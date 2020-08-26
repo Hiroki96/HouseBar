@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post 'follow/:id', to: 'relationships#create', as: 'follow'
+  post 'unfollow/:id', to: 'relationships#destroy', as: 'unfollow'
+
+  root 'home#index'
+
+  devise_for :users
+
+  resources :users, only: [:show] do
+    get :following, :followers
+  end
 end

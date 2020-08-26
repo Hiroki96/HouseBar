@@ -1,0 +1,16 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.wrapper {
+  position:	relative; /* 相対位置指定 */
+}
+
+
+.text {
+  position:	absolute; /* 絶対位置指定 */
+  top:-400px;
+}
+
+.head {
+  background-color: navajowhite;
+}
