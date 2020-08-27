@@ -1,19 +1,45 @@
 -if @user == current_user
+  = image_tag current_user.image.to_s, class: "icon_image"
+  br
   =current_user.name
+  br
   =current_user.email
+  br
+  =current_user.profile
+  br
   = link_to "#{ current_user.follower.count }フォロー", user_following_path(current_user)
   = link_to "#{ current_user.followed.count}フォロワー", user_followers_path(current_user)
+  br
+  = link_to "プロフィール設定", edit_user_path(current_user)
+  br
+  = link_to "パスワード変更", edit_user_registration_path(current_user)
+  br
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
 -else
   - unless @user == current_user
     - if current_user.following?(@user)
+      = image_tag @user.image.to_s, class: "icon_image"
+      br
       = @user.name
+      br
       = @user.email
+      br
+      = @user.profile
+      br
       = link_to "#{ @user.follower.count }フォロー中", user_following_path(@user)
       = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
+      br
       = link_to 'フォロー解除', unfollow_path(@user), method: :post, class: 'btn btn-info'
     - else
+      = image_tag @user.image.to_s, class: "icon_image"
+      br
       = @user.name
+      br
       = @user.email
+      br
+      = @user.profile
+      br
       = link_to "#{ @user.follower.count }フォロー中", user_following_path(@user)
       = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
+      br
       = link_to 'フォローする', follow_path(@user), method: :post, class: 'btn btn-default'

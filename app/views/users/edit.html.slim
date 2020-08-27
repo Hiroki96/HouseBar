@@ -1,0 +1,13 @@
+= image_tag @user.image.to_s, class: "icon_image"
+= form_with model: @user, local: true do |f| # modelを渡している
+    = f.text_field :name
+    br
+    = f.file_field :image
+    br
+    = f.text_field :profile
+    br
+    = f.submit
+
+/= form_with model: @user, url: {controller: 'users', action: 'update' } do  |form|
+  = form.text_field :name
+  = form.submit

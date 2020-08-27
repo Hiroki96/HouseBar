@@ -34,6 +34,8 @@ ja:
       send_paranoid_instructions: "あなたのメールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。"
       updated: 'パスワードが正しく変更されました。'
       updated_not_active: 'パスワードが正しく変更されました。'
+    models:
+      user: "ユーザ-"
     registrations:
       destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
       signed_up: 'アカウント登録が完了しました。'
@@ -58,5 +60,7 @@ ja:
       not_found: 'は見つかりませんでした。'
       not_locked: 'は凍結されていません。'
       not_saved:
-        one: "エラーが発生したため %{resource} は保存されませんでした:"
-        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+        #one: "エラーが発生したため %{resource} は保存されませんでした:"
+        #other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+        one: "エラーが発生したためは新しいパスワードは保存されませんでした"
+        other: "%{count} 件のエラーが発生したため新しいパスワードは保存されませんでした"

@@ -4,6 +4,9 @@ ja:
       user:
         email: メールアドレス
         name: ユーザーネーム
+        user: ユーザー
         password: パスワード
+        profile: プロフィール
+        image: プロフィール画像
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン

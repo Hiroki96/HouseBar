@@ -1,5 +1,9 @@
+= image_tag @user.image.to_s, class: "icon_image"
 =@user.name
--@followers.each do |follower|
-  p
-    =follower.email
-    =follower.name
+
+div.container
+  -@followers.each do |follower|
+    = link_to user_path(follower)
+      = image_tag follower.image.to_s, class: "icon_image"
+      =follower.email
+      =follower.name

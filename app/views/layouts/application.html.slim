@@ -8,6 +8,7 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    p class="notice" = notice
-    p class="alert" = alert
-    = yield
+    header
+      p class="notice" = notice
+      p class="alert" = alert
+      = yield
