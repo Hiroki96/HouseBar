@@ -10,6 +10,15 @@
   //タテヨコ比を変えないままトリミング
 }
 
-.wrapper {
-  padding-top: 0;
+.post {
+  width: 500px;
+  height: 500px;
+  //サイズ指定
+
+  object-fit: cover;
+  //タテヨコ比を変えないままトリミング
+}
+
+.container {
+  text-align : center
 }

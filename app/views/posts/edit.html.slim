@@ -1,0 +1,14 @@
+= image_tag @user.image.to_s, class: "icon_image"
+br
+= @user.name
+br
+div.container
+  = image_tag @post.image.variant(resize:'900x900').processed
+  br
+  = @post.created_at
+  br
+  = form_with model: @post, local: true do |f| # modelを渡している
+    = f.text_field :description
+    br
+    = f.submit
+  =link_to 'Remove', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }

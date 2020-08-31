@@ -14,7 +14,18 @@
   br
   = link_to "パスワード変更", edit_user_registration_path(current_user)
   br
+  = link_to "投稿する", new_post_path(current_user)
+  br
   = link_to "ログアウト", destroy_user_session_path, method: :delete
+  br
+  div.container
+    - current_user.posts.each do |post|
+      br
+      = link_to post_path(post)
+        = image_tag post.image, class: "post" if post.image.attached?
+        br
+      = post.description
+      = post.created_at
 -else
   - unless @user == current_user
     - if current_user.following?(@user)
@@ -30,6 +41,15 @@
       = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
       br
       = link_to 'フォロー解除', unfollow_path(@user), method: :post, class: 'btn btn-info'
+      br
+      div.container
+        - @user.posts.each do |post|
+          br
+          = link_to post_path(post)
+            = image_tag post.image, class: "post" if post.image.attached?
+            br
+          = post.description
+          = post.created_at
     - else
       = image_tag @user.image.to_s, class: "icon_image"
       br
@@ -43,3 +63,12 @@
       = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
       br
       = link_to 'フォローする', follow_path(@user), method: :post, class: 'btn btn-default'
+      br
+      div.container
+        - @user.posts.each do |post|
+          br
+          = link_to post_path(post)
+            = image_tag post.image, class: "post" if post.image.attached?
+            br
+          = post.description
+          = post.created_at

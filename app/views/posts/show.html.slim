@@ -1,0 +1,16 @@
+= image_tag @user.image.to_s, class: "icon_image"
+br
+= @user.name
+br
+= @user.email
+br
+= @user.profile
+br
+div.container
+  = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
+  br
+  = @post.description
+  br
+  = @post.created_at
+  br
+  = link_to '編集する', edit_post_path(@post.id) if @user = current_user
