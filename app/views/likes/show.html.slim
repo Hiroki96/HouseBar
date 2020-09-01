@@ -1,0 +1,20 @@
+= image_tag @user.image.to_s, class: "icon_image"
+br
+= @user.name
+br
+= @user.email
+br
+= @user.profile
+
+div.container
+  - @likes.each do |like|
+    br
+    = link_to user_path(like.post.user)
+      = image_tag like.post.user.image.to_s, class: "icon_image"
+      = like.post.user.name
+    br
+    = link_to post_path(like.post)
+      = image_tag like.post.image, class: "post" if like.post.image.attached?
+    br
+    = like.post.description
+    = like.post.created_at

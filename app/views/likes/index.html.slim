@@ -1,0 +1,9 @@
+- @likes.each do |like|
+  = link_to user_path(like.user)
+    = image_tag like.user.image.to_s, class: "icon_image"
+    br
+    = like.user.name
+    br
+    = like.user.email
+    br
+    = like.user.profile

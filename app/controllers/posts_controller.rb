@@ -11,8 +11,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    #Post.create(description: params[:description], user_id: current_user.id)
-    #@post = Post.create(description: post_params, user_id: current_user.id)
     @post = current_user.posts.create(post_params)
     redirect_to user_path(current_user)
   end

@@ -12,5 +12,10 @@ div.container
   = @post.description
   br
   = @post.created_at
+  = link_to "#{@post.likes.count}", post_likes_path(@post)
+  - if @post.liked?(current_user)
+    = link_to 'いいね解除', post_like_path(@post.id), method: :delete
+  - else
+    = link_to 'いいね', post_likes_path(@post.id), method: :post
   br
-  = link_to '編集する', edit_post_path(@post.id) if @user = current_user
+  = link_to '編集する', edit_post_path(@post.id) if @user == current_user
