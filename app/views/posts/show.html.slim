@@ -19,3 +19,17 @@ div.container
     = link_to 'いいね', post_likes_path(@post.id), method: :post
   br
   = link_to '編集する', edit_post_path(@post.id) if @user == current_user
+  br
+  - @comments.each do |comment|
+    br
+    = image_tag comment.user.image.to_s, class: "icon_image"
+    = link_to "@#{comment.user.name}", user_path(comment.user.id)
+    = comment.content
+    - if comment.user == current_user
+      = link_to '削除', post_comment_path(comment.post_id, comment.id), method: :delete
+    br
+  br
+  = form_with model: [@post,@comment], local: true do |form|
+    = form.text_area :content
+    br
+    = form.submit "コメントをする"

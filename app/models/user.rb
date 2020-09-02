@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 
