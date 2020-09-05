@@ -12,6 +12,8 @@ div.container
   = @post.description
   br
   = @post.created_at
+  - @post.categories.each do |category|
+    = category.name
   = link_to "#{@post.likes.count}", post_likes_path(@post)
   - if @post.liked?(current_user)
     = link_to 'いいね解除', post_like_path(@post.id), method: :delete

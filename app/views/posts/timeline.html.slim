@@ -1,0 +1,12 @@
+div.container
+  - @posts.each do |post|
+    br
+    = link_to user_path(post.user)
+      = image_tag post.user.image.to_s, class: "icon_image"
+      = post.user.name
+    br
+    = link_to post_path(post)
+      = image_tag post.image, class: "post" if post.image.attached?
+    br
+    = post.description
+    = post.created_at

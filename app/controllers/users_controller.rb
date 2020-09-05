@@ -33,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   private
-  # ストロングパラメータ
   def user_params
     params.require(:user).permit(:name, :image, :profile)
   end

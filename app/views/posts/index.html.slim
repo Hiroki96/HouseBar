@@ -1,12 +1,37 @@
-div.container
-  - @posts.each do |post|
+= search_form_for @q do |f|
+  - Category.all.each do |label|
     br
-    = link_to user_path(post.user)
-      = image_tag post.user.image.to_s, class: "icon_image"
-      = post.user.name
+    = f.check_box :categories_id_eq_any, { multiple: true, checked: label[:checked], disabled: label[:disabled] }, label[:id]
+    = label.name
+  br
+  = f.submit "検索"
+- if params[:q].present?
+  = "検索結果#{@search_posts.count}件"
+  br
+  - if @search_posts.count == 0
+    = "投稿が見つかりませんでした"
+  - @search_posts.each do |search_post|
     br
-    = link_to post_path(post)
-      = image_tag post.image, class: "post" if post.image.attached?
+    = link_to user_path(search_post.user)
+      = image_tag search_post.user.image.to_s, class: "icon_image"
+      = search_post.user.name
+    br
+    = link_to post_path(search_post)
+      = image_tag search_post.image, class: "post" if search_post.image.attached?
       br
-    = post.description
-    = post.created_at
+    = search_post.description
+    = search_post.created_at
+- else
+  div.container
+    - @posts.each do |post|
+      br
+      = link_to user_path(post.user)
+        = image_tag post.user.image.to_s, class: "icon_image"
+        = post.user.name
+        br
+      = link_to post_path(post)
+        = image_tag post.image, class: "post" if post.image.attached?
+        br
+      = post.description
+      = post.created_at
+

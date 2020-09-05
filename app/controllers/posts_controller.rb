@@ -3,6 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @q = Post.ransack(params[:q])
+    @search_posts = @q.result(distinct: true)
   end
 
   def show
@@ -37,10 +39,14 @@ class PostsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def timeline
+    @posts = Post.where(user_id: current_user.following_user.ids)
+  end
+
   private
 
   def post_params
-  params.require(:post).permit(:description, :image)
+  params.require(:post).permit(:description, :image, category_ids: [])
   end
 
 end
