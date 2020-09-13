@@ -1,12 +1,16 @@
-= image_tag @user.image.to_s, class: "icon_image"
-= @user.name
-- @followings.each do |following|
-  br
-  = link_to user_path(following)
+div.container.mt-5
+  .text-center
+    = image_tag @user.image.to_s, class: "icon_image"
     br
-    = image_tag following.image.to_s, class: "icon_image"
-    = following.email
-    = following.name
+    = @user.name
+  div.user_index
+    p
+      = "#{@user.follower.count}人をフォロー中"
+    - @followings.each do |following|
+      = link_to user_path(following)
+        .mt-3
+          = image_tag following.image.to_s, class: "icon_image"
+          = following.name
 
 
 

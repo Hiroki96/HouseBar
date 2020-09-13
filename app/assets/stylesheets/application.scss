@@ -1,24 +1,238 @@
 @import "bootstrap";
+@import "overrides/*";
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
+
+body {
+  background-color: #f1f1ef;
+  //display: flex;
+  //flex-flow: column;
+  //min-height: 100vh;
+}
+main {
+  //flex: 1;
+}
+.footer {
+  //margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  background-image: url(footer_image.png);
+  //background-repeat: repeat-x;
+  height: 80px;
+  width: 100%;
+  //display: flex;
+  //flex-flow: column;
+  //min-height: 100vh;
+  img {
+    //eight: 70px;
+  }
+}
+
+.new_user {
+  background: rgba(255,255,255,0.93);
+  width: 500px;
+  margin: auto;
+}
+
+.wrapper {
+  position: relative;
+  .text {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    h1 {
+      font-size: 100px;
+      color: darkorange;
+    }
+  }
+}
+.top {
+  background-color: #f1f1ef;
+  h1 {
+    text-align: center;
+    font-size: 100px;
+    color: darkorange;
+    padding-top: 40px;
+    text-shadow: -1px -2px 3px #808080;
+    //font-family: "Ribeye";
+    font-family: 'Sacramento', cursive;
+  }
+}
 
 .icon_image {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+.header_icon_image {
   width: 50px;
   height: 50px;
-  //サイズ指定
   border-radius: 100px;
-  //画像を丸くする
   object-fit: cover;
-  //タテヨコ比を変えないままトリミング
+}
+.post {
+  width: 300px;
+  height: 300px;
+  float: left;
+  margin: 20px;
+  //margin: 20px 0 20px 0;
+  object-fit: cover;
+}
+.container {
+  .field, .actions {
+    margin-top: 40px;
+    font-size: 17px;
+  }
+  .profile {
+    input[type="text"] {
+      width: 400px;
+      height: 200px;
+    }
+  }
+}
+.registration-container {
+  //text-align: center;
+  margin: 0 -20px 0 -20px;
+  height: 100%;
+  //background: rgba(255,255,255,0.93);
+  .field, .actions {
+    margin-top: 30px;
+    font-size: 17px;
+  }
+}
+.registration {
+  height: 100%;
+  background-image: url(home_top_image.jpg);
+  background-size: cover;
+  //background-color: #f1f1ef;
+  .login_form_bottom{
+    padding-bottom: 130px;
+  }
 }
 
-.post {
+.header {
+  background-color: navajowhite;
+  a {
+    color: black;
+    font-size: 15px;
+  }
+  .logo {
+    a {
+      font-family: 'Sacramento', cursive;
+      color: darkorange;
+      font-size: 40px;
+    }
+  }
+}
+
+.post-form {
+  .text-center{
+    margin-right: 60px;
+  }
+}
+
+.mypage {
+  height: 750px;
+  border-left: thin solid #666666;
+  padding-left: 80px;
+  margin: 100px 80px 0 0;
+  .list-unstyled {
+    color: black;
+  }
+  li {
+      margin-top: 50px;
+      color: black;
+    a {
+      color: black;
+      font-size: 18px;
+    }
+  }
+}
+
+.category {
+  margin: 90px 90px 0 0;
+  border-left: thin solid #666666;
+  padding-left: 70px;
+  height: 1000px;
+  .field {
+    margin-top: 40px
+  }
+}
+
+.contents{
+  margin-top: 80px;
+  margin-left: 50px;
+}
+.pagination {
+  text-align: center;
+}
+
+.search-result {
+  margin-left: 20px;
+  text-decoration:underline;
+}
+
+.user_index {
+  margin-top: 50px;
+  p {
+    font-size: 25px;
+    border-bottom: thin solid #666666;
+  }
+}
+.post-image {
+  //text-align: right;
+  display: inline-block;
+  //width: 900px;
+  //margin-right: auto;
+  //margin-left: auto;
+  a {
+    padding-right: 5px;
+  }
+}
+.user-post {
+  text-align: center;
+  //display: inline-block;
+}
+.r {
+  //display: inline-block;
+  //text-align: center;
+  //margin: auto;
+  //position: absolute;
+}
+.post-img {
+  text-align: right;
+}
+.comments_user {
+  border: thin solid #666666;
+  height: 50px;
+}
+.comments {
+  border: thin solid #666666;
+  border-radius: 25px;
+  background-color: #F7F7F7;
+}
+.likes {
+  margin-top: 300px;
+}
+.post_contents {
+  width: 800px;
+  height: 400px;
+  position: relative;
+  .like {
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+    vertical-align : bottom;
+  }
+}
+.likes-index {
+  p {
+    font-size: 25px;
+    border-bottom: thin solid #666666;
+  }
+}
+.posts {
   width: 500px;
   height: 500px;
-  //サイズ指定
-
   object-fit: cover;
-  //タテヨコ比を変えないままトリミング
-}
-
-.container {
-  text-align : center
 }

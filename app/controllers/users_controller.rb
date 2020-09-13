@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @posts = Post.where(id: @user.post_ids).order(created_at: 'DESC')
+    #@categories = Post.where(categories_name: "ビール")
   end
 
   def edit
@@ -33,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :image, :profile)
   end

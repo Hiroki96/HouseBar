@@ -1,9 +1,22 @@
-= image_tag @user.image.to_s, class: "icon_image"
-=@user.name
--@followers.each do |follower|
+/= image_tag @user.image.to_s, class: "icon_image"
+/=@user.name
+/-@followers.each do |follower|
   br
   = link_to user_path(follower)
     br
     = image_tag follower.image.to_s, class: "icon_image"
     =follower.email
     =follower.name
+div.container.mt-5
+  .text-center
+    = image_tag @user.image.to_s, class: "icon_image"
+    br
+    = @user.name
+  div.user_index
+    p
+      = "#{@user.followed.count}人にフォローされています"
+    - @followers.each do |follower|
+      = link_to user_path(follower)
+        .mt-3
+          = image_tag follower.image.to_s, class: "icon_image"
+          = follower.name

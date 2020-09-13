@@ -1,0 +1,42 @@
+div.container.text-center
+  div.mt-5
+    = image_tag @user.image.to_s, class: "icon_image"
+    br
+    = @user.name
+    br
+    = simple_format(@user.profile)
+    br
+    = link_to "#{ @user.follower.count }フォロー中", user_following_path(@user)
+    = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
+    br
+    - unless @user == current_user
+      - if current_user.following?(@user)
+        = link_to 'フォロー解除', unfollow_path(@user), method: :post, class: 'btn btn-info'
+      - else
+        = link_to 'フォローする', follow_path(@user), method: :post, class: 'btn btn-default'
+    br
+    = "#{@user.posts.count}投稿"
+    br
+    = link_to "#{@user.likes.count}いいね", user_like_path(@user)
+    div
+      /= "#{@categories.count}"
+      /- if @posts.categories.ids.include?(1)
+        = "#{@posts.count}"
+      /- @posts.each do |post|
+        /- if post.categories.ids.include?(1)
+        = "#{post.count}"
+        /- @categories == post.categories.ids.map
+        /= @categories
+        /= post.categories.ids
+        /- post.category_ids.each do |category|
+          = "・#{category.count} "
+      /- @user.posts.each do |category|
+        = category.categories.name
+    div.ml-5
+      - @posts.each do |post|
+        = link_to post_path(post)
+          = image_tag post.image, class: "post" if post.image.attached?
+          /= post.category_ids.name
+      /- @user.posts.each do |post|
+        = link_to post_path(post)
+          = image_tag post.image, class: "post" if post.image.attached?

@@ -3,6 +3,7 @@ class LikesController < ApplicationController
   def index
     @post = Post.find_by(id: params[:post_id])
     @likes = Like.where(post_id: @post.id)
+    @user = User.find_by(id: @post.user_id)
   end
 
   def show

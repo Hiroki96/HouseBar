@@ -1,12 +1,17 @@
-= image_tag @user.image.to_s, class: "icon_image"
-= form_with model: @user, local: true do |f| # modelを渡している
-    = f.text_field :name
-    br
-    = f.file_field :image
-    br
-    = f.text_field :profile
-    br
-    = f.submit
+div.container.text-center.mt-5
+  = image_tag @user.image.to_s, class: "icon_image"
+  = form_with model: @user, local: true do |f|
+    .field
+      p 名前の変更
+      = f.text_field :name
+    .field
+      p プロフィール画像の変更
+      = f.file_field :image
+    .field.profile
+      p プロフィールの変更
+      = f.text_area :profile, size: "50x10", :placeholder => "好きなお酒などを書いてプロフィールを設計しよう！"
+    .actions
+      = f.submit
 
 /= form_with model: @user, url: {controller: 'users', action: 'update' } do  |form|
   = form.text_field :name

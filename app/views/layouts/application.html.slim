@@ -9,6 +9,23 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     header
-      p class="notice" = notice
-      p class="alert" = alert
-      = yield
+      - flash.each do |key, value|
+        - if key == "notice"
+          = content_tag(:div, value, class: "#{key}, alert alert-primary text-center")
+        - elsif key == "alert"
+          = content_tag(:div, value, class: "#{key}, alert alert-danger text-center")
+      div.header.pr-4.navbar.navbar-expand-md.justify-content-end
+        .logo.mr-auto
+          = link_to 'HouseBar', root_path
+        - if user_signed_in?
+          = link_to user_path(current_user), class: "mr-4"
+            = image_tag current_user.image.to_s, class: "header_icon_image"
+            = current_user.name
+          = link_to '投稿一覧/検索', posts_path, class: "mr-4"
+          = link_to 'タイムライン',  timeline_posts_url(current_user)
+        - else
+          = link_to '新規登録', new_user_registration_url, class: "mr-4"
+          = link_to 'ログイン', new_user_session_path
+      //footer
+        //= image_tag "footer_image.png", class: 'img-fluid'
+    = yield

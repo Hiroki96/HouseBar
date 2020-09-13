@@ -2,9 +2,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: 'DESC').page(params[:page]).per(30)
     @q = Post.ransack(params[:q])
-    @search_posts = @q.result(distinct: true)
+    @search_posts = @q.result(distinct: true).order(created_at: 'DESC')
   end
 
   def show
@@ -15,8 +15,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.create(post_params)
-    redirect_to user_path(current_user)
+    @post = current_user.posts.new(post_params)
+    if @post.save
+      flash[:notice] = "投稿に成功しました。"
+      redirect_to user_path(current_user)
+    else
+      flash[:alert] = "投稿できませんでした。"
+      render action: :new
+    end
   end
 
   def new
@@ -35,12 +41,18 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find_by(id: params[:id])
-    @post.destroy
-    redirect_to user_path(current_user)
+    if @post.destroy
+      flash[:notice] = "投稿を削除しました。"
+      redirect_to user_path(current_user)
+    else
+      flash[:alert] = "投稿を削除できませんでした。"
+      render action: :edit
+    end
   end
 
   def timeline
     @posts = Post.where(user_id: current_user.following_user.ids)
+    @likes = Like.where(post_id: @posts.ids)
   end
 
   private

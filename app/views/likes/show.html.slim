@@ -1,12 +1,12 @@
-= image_tag @user.image.to_s, class: "icon_image"
-br
-= @user.name
-br
-= @user.email
-br
-= @user.profile
+/= image_tag @user.image.to_s, class: "icon_image"
+/br
+/= @user.name
+/br
+/= @user.email
+/br
+/= @user.profile
 
-div.container
+/div.container
   - @likes.each do |like|
     br
     = link_to user_path(like.post.user)
@@ -18,3 +18,14 @@ div.container
     br
     = like.post.description
     = like.post.created_at
+div.container.text-center
+  div.mt-5
+    = image_tag @user.image.to_s, class: "icon_image"
+    br
+    = @user.name
+    br
+    = link_to "いいね数#{@user.likes.count}", user_like_path(@user)
+  div.ml-5
+    - @likes.each do |like|
+      = link_to post_path(like.post)
+        = image_tag like.post.image, class: "post" if like.post.image.attached?

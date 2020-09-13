@@ -1,42 +1,43 @@
-h2
-  = "パスワード変更"
-  /= resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password, value ="新しいパスワード"
-    i
-      /| (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
+div.container.text-center.mt-5
+  h2
+    = "パスワード変更"
+    /= resource_name.to_s.humanize
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :email
       br
-      em
-        = @minimum_password_length
-        |  文字以上
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password, value= "現在のパスワード"
-    i
-      /| (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "変更"
-h3
-  | アカウントを消去する
-p
-  /| Unhappy?
-  = button_to "アカウント消去", registration_path(resource_name), data: { confirm: "本当に消去してよろしいですか?" }, method: :delete
-= link_to "Back", :back
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      div
+        | Currently waiting confirmation for:
+        = resource.unconfirmed_email
+    .field
+      = f.label :password, value ="新しいパスワード"
+      i
+        /| (leave blank if you don't want to change it)
+      br
+      = f.password_field :password, autocomplete: "new-password"
+      - if @minimum_password_length
+        br
+        em
+          = @minimum_password_length
+          |  文字以上
+    .field
+      = f.label :password_confirmation
+      br
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .field
+      = f.label :current_password, value= "現在のパスワード"
+      i
+        /| (we need your current password to confirm your changes)
+      br
+      = f.password_field :current_password, autocomplete: "current-password"
+    .actions
+      = f.submit "変更"
+  h3.mt-5
+    | アカウントを消去する
+  p
+    /| Unhappy?
+    = button_to "アカウント消去", registration_path(resource_name), data: { confirm: "本当に消去してよろしいですか?" }, method: :delete
+  = link_to "Back", :back

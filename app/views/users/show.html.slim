@@ -1,4 +1,15 @@
 -if @user == current_user
+  div.mypage.float-right
+    ul.list-unstyled
+      li = link_to "プロフィール設定", edit_user_path(current_user)
+      li = link_to "パスワード変更", edit_user_registration_path(current_user)
+      li = link_to "投稿する", new_post_path(current_user)
+      li = link_to "ログアウト", destroy_user_session_path, method: :delete
+    br
+  = render 'devise/shared/user', current_user: @user
+-else
+  = render 'devise/shared/user'
+/-if @user == current_user
   = image_tag current_user.image.to_s, class: "icon_image"
   br
   =current_user.name
@@ -28,9 +39,10 @@
         = image_tag post.image, class: "post" if post.image.attached?
         br
       = post.description
-      = post.created_at
--else
-  - unless @user == current_user
+      = created_time(post.created_at)
+/-else
+  = render 'shared/user', locals: current_user: @user
+  /- unless @user == current_user
     = image_tag @user.image.to_s, class: "icon_image"
     br
     = @user.name
@@ -57,4 +69,4 @@
           = image_tag post.image, class: "post" if post.image.attached?
         br
         = post.description
-        = post.created_at
+        = created_time(post.created_at)

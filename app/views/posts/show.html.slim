@@ -1,37 +1,42 @@
-= image_tag @user.image.to_s, class: "icon_image"
-br
-= @user.name
-br
-= @user.email
-br
-= @user.profile
-br
-div.container
-  = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
-  br
-  = @post.description
-  br
-  = @post.created_at
-  - @post.categories.each do |category|
-    = category.name
-  = link_to "#{@post.likes.count}", post_likes_path(@post)
-  - if @post.liked?(current_user)
-    = link_to 'いいね解除', post_like_path(@post.id), method: :delete
-  - else
-    = link_to 'いいね', post_likes_path(@post.id), method: :post
-  br
-  = link_to '編集する', edit_post_path(@post.id) if @user == current_user
-  br
-  - @comments.each do |comment|
+.text-center.mt-5
+  = link_to user_path(@user)
+    = image_tag @user.image.to_s, class: "icon_image"
     br
-    = image_tag comment.user.image.to_s, class: "icon_image"
-    = link_to "@#{comment.user.name}", user_path(comment.user.id)
-    = comment.content
-    - if comment.user == current_user
-      = link_to '削除', post_comment_path(comment.post_id, comment.id), method: :delete
+    = @user.name
+div.user-post
+  div.post-image.mt-5
+    .text-left
+      - @post.categories.each do |category|
+        = "・#{category.name} "
+      br
+    = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
+    .text-right
+      = link_to "#{@post.likes.count}", post_likes_path(@post)
+      - if @post.liked?(current_user)
+        = link_to 'いいね解除', post_like_path(@post.id), method: :delete
+      - else
+        = link_to 'いいね', post_likes_path(@post.id), method: :post
+      = created_time(@post.created_at)
     br
-  br
-  = form_with model: [@post,@comment], local: true do |form|
-    = form.text_area :content
+    = simple_format(@post.description)
+    .text-right
+      = link_to '編集する', edit_post_path(@post.id) if @user == current_user
     br
-    = form.submit "コメントをする"
+    - @comments.each do |comment|
+      br
+      div.comments
+        .text-left.ml-3.mt-2
+          = image_tag comment.user.image.to_s, class: "header_icon_image"
+          = link_to "@#{comment.user.name}", user_path(comment.user.id)
+          .ml-5
+            = simple_format(comment.content)
+        .text-right.mr-2.mb-2
+          = created_time(comment.created_at)
+          - if comment.user == current_user
+            = link_to '削除', post_comment_path(comment.post_id, comment.id), method: :delete
+            br
+    div.mt-3.text-right
+      = form_with model: [@post,@comment], local: true do |f|
+        = f.text_area :content, size: "50x4"
+        br
+        = f.submit "コメントをする"
