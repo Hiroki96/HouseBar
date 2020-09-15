@@ -1,17 +1,16 @@
-div.container
+.container
   = form_with model: @post, local: true do |f|
-    div.field.float-left.ml-5
+    .field.float-left.ml-5
       = f.label :category, 'カテゴリー'
       = f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|
         br
         = category.label do
           = category.check_box
           = category.text
-    div.text-center.description
+    .text-center.description
       p.mt-5 お酒の説明やレシピを書きましょう！
       .field
         = f.text_area :description, size: "50x10"
-      br
       .field
         = f.file_field :image
       .actions.mt-5

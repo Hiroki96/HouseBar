@@ -1,24 +1,10 @@
-/= image_tag @user.image.to_s, class: "icon_image"
-/br
-/= @user.name
-/br
-/div.container
-  = image_tag @post.image.variant(resize:'900x900').processed
-  br
-  = created_time(@post.created_at)
-  br
-  = form_with model: @post, local: true do |f|
-    = f.text_field :description
-    br
-    = f.submit
-  =link_to 'Remove', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' }
 .text-center.mt-5
   = link_to user_path(@user)
     = image_tag @user.image.to_s, class: "icon_image"
     br
     = @user.name
-div.user-post
-  div.post-image.mt-5
+.user-post
+  .post-image.mt-5
     .text-left
       - @post.categories.each do |category|
         = "・#{category.name}　"
@@ -28,8 +14,10 @@ div.user-post
       = link_to "#{@post.likes.count}いいね", post_likes_path(@post)
       = created_time(@post.created_at)
     .text-right.mt-3
-      = link_to '投稿を削除', post_path(@post.id), method: :delete, data: {confirm: '投稿を削除してもよろしいですか？'}
-    = form_with model: @post, local: true do |f|
-      = f.text_area :description, size: "50x10"
-      br
-      = f.submit
+      = link_to post_path(@post.id), method: :delete, data: {confirm: '投稿を削除してもよろしいですか？'} do
+        span class="far fa-trash-alt" style="color: red;"削除
+    .mt-3
+      = form_with model: @post, local: true do |f|
+        = f.text_area :description, size: "50x10"
+        .mb-5.actions
+          = f.submit

@@ -1,4 +1,4 @@
-div.category.float-right
+.category.float-right
   = search_form_for @q do |f|
     - Category.all.each do |label|
       br
@@ -8,8 +8,8 @@ div.category.float-right
     .field
       = f.submit "検索"
 - if params[:q].present?
-  div.contents
-    div.search-result
+  .contents
+    .search-result
       - if @search_posts.count == 0
         = "投稿が見つかりませんでした。"
       -else
@@ -23,13 +23,9 @@ div.category.float-right
       /= search_post.description
       /= created_time(search_post.created_at)
 - else
-  div.contents
+  .contents.mb-5
     - @posts.each do |post|
-      /= link_to user_path(post.user)
-        = image_tag post.user.image.to_s, class: "icon_image"
-        = post.user.name
-        br
       = link_to post_path(post)
         = image_tag post.image, class: "post" if post.image.attached?
-    = paginate @posts
-
+    /.paginate
+      = paginate @posts

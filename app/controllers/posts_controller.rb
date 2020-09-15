@@ -53,6 +53,7 @@ class PostsController < ApplicationController
   def timeline
     @posts = Post.where(user_id: current_user.following_user.ids)
     @likes = Like.where(post_id: @posts.ids)
+    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   private

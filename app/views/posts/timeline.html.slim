@@ -1,19 +1,21 @@
-div.container.text-center.mt-5
-  /- if @posts.any?
-    - @posts.each do |post|
-      br
-      = link_to user_path(post.user)
-        = image_tag post.user.image.to_s, class: "icon_image"
-        = post.user.name
-      br
-      = link_to post_path(post)
-        = image_tag post.image, class: "post" if post.image.attached?
-      br
-      = post.description
-      = post.created_at.to_s(:db)
+.ranking.float-right
+  span class="fas fa-crown"  いいね数ランキング
+  - @all_ranks.each.with_index(1) do |post, i|
+    .mt-5
+      span class="fas fa-crown" = "第#{i}位"
+      span.ml-4 = "#{post.likes.count}いいね"
+    .ml-3
+      .mt-2
+        = link_to user_path(post.user)
+          = image_tag post.user.image.to_s, class: "header_icon_image"
+          = post.user.name
+      .mt-2
+        = link_to post_path(post)
+          = image_tag post.image.variant(resize:'200x200').processed if post.image.attached?
+.container.text-center.mt-5
   - if @posts.any?
-    div.user-post
-      div.post-image.mt-5
+    .user-post
+      .post-image.mt-5
         .text-left
           - @posts.each do |post|
             br
@@ -33,11 +35,8 @@ div.container.text-center.mt-5
               /- else
                 = link_to 'いいね', post_likes_path(post.id), method: :post
               = created_time(post.created_at)
-            br
-            = simple_format(post.description)
-            .text-left
-              = link_to '編集する', edit_post_path(post.id) if @user == current_user
-            br
+            .text-center
+              = simple_format(post.description)
   -else
     p フォローしているユーザーはまだ投稿していません。
     = link_to "興味のあるユーザーを探す", posts_path

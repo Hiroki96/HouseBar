@@ -1,9 +1,25 @@
 @import "bootstrap";
 @import "overrides/*";
+//@import 'font-awesome';
 @import url('https://fonts.googleapis.com/css?family=Sacramento');
 
 body {
   background-color: #f1f1ef;
+  a {
+  color: black;
+  }
+  input[type="text"]:focus {
+    outline-color: darkorange;
+  }
+  input[type="email"]:focus {
+    outline-color: darkorange;
+  }
+  input[type="password"]:focus {
+    outline-color: darkorange;
+  }
+  textarea:focus {
+    outline-color: darkorange;
+  }
   //display: flex;
   //flex-flow: column;
   //min-height: 100vh;
@@ -47,6 +63,11 @@ main {
 }
 .top {
   background-color: #f1f1ef;
+  text-align: center;
+  font-size: 24px;
+  a {
+    margin-right: 50px;
+  }
   h1 {
     text-align: center;
     font-size: 100px;
@@ -55,6 +76,11 @@ main {
     text-shadow: -1px -2px 3px #808080;
     //font-family: "Ribeye";
     font-family: 'Sacramento', cursive;
+  }
+  h3 {
+    margin-top: 200px;
+    text-align: center;
+
   }
 }
 
@@ -191,13 +217,9 @@ main {
 }
 .user-post {
   text-align: center;
-  //display: inline-block;
-}
-.r {
-  //display: inline-block;
-  //text-align: center;
-  //margin: auto;
-  //position: absolute;
+  //span {
+    //color: darkorange;
+  //}
 }
 .post-img {
   text-align: right;
@@ -236,3 +258,44 @@ main {
   height: 500px;
   object-fit: cover;
 }
+
+.like_icon {
+  color: #ff3a5c
+}
+.follow-button {
+  border: thin solid darkorange;
+}
+.unfollow-button {
+  color: white;
+  background-color: darkorange;
+}
+.delete-icon {
+  background-color: darkorange;
+}
+.actions {
+  input {
+    border: thin solid darkorange;
+  }
+  a {
+    border-bottom: thin solid darkorange;
+  }
+}
+.delete_button {
+  color: red;
+}
+.paginate {
+}
+.q {
+  height: 100%;
+}
+.ranking {
+  margin: 90px 70px 0 0;
+  border-left: thin solid #666666;
+  padding-left: 70px;
+  height: 1000px;
+  span {
+    color: black;
+    font-size: 24px;
+  }
+}
+

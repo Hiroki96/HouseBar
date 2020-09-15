@@ -1,4 +1,4 @@
-div.container.text-center.mt-5
+.container.text-center.mt-5
   = image_tag @user.image.to_s, class: "icon_image"
   = form_with model: @user, local: true do |f|
     .field
@@ -12,7 +12,3 @@ div.container.text-center.mt-5
       = f.text_area :profile, size: "50x10", :placeholder => "好きなお酒などを書いてプロフィールを設計しよう！"
     .actions
       = f.submit
-
-/= form_with model: @user, url: {controller: 'users', action: 'update' } do  |form|
-  = form.text_field :name
-  = form.submit

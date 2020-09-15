@@ -3,40 +3,47 @@
     = image_tag @user.image.to_s, class: "icon_image"
     br
     = @user.name
-div.user-post
-  div.post-image.mt-5
+.user-post
+  .post-image.mt-5
     .text-left
       - @post.categories.each do |category|
         = "・#{category.name} "
       br
     = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
     .text-right
-      = link_to "#{@post.likes.count}", post_likes_path(@post)
-      - if @post.liked?(current_user)
-        = link_to 'いいね解除', post_like_path(@post.id), method: :delete
-      - else
-        = link_to 'いいね', post_likes_path(@post.id), method: :post
+      = render partial: "posts/like"
+      /= link_to "#{@post.likes.count}", post_likes_path(@post)
+      /- if @post.liked?(current_user)
+        = link_to  post_like_path(@post.id), method: :delete do
+          span class= 'fas fa-heart like_icon'
+      /- else
+        = link_to post_likes_path(@post.id), method: :post do
+          span class= 'far fa-heart'
       = created_time(@post.created_at)
     br
     = simple_format(@post.description)
     .text-right
-      = link_to '編集する', edit_post_path(@post.id) if @user == current_user
+      - if @user == current_user
+        = link_to edit_post_path(@post.id) do
+          span class= 'fas fa-pen'style='color: orange;'編集
     br
     - @comments.each do |comment|
       br
-      div.comments
+      .comments
         .text-left.ml-3.mt-2
           = image_tag comment.user.image.to_s, class: "header_icon_image"
           = link_to "@#{comment.user.name}", user_path(comment.user.id)
           .ml-5
             = simple_format(comment.content)
+        .text-right.mr-2
+          - if comment.user == current_user
+            = link_to post_comment_path(comment.post_id, comment.id), method: :delete do
+              span class="far fa-trash-alt" style="color: orange;"
         .text-right.mr-2.mb-2
           = created_time(comment.created_at)
-          - if comment.user == current_user
-            = link_to '削除', post_comment_path(comment.post_id, comment.id), method: :delete
             br
-    div.mt-3.text-right
+    .mt-3.text-right
       = form_with model: [@post,@comment], local: true do |f|
         = f.text_area :content, size: "50x4"
-        br
-        = f.submit "コメントをする"
+        .mb-5.actions
+          = f.submit "コメントをする"

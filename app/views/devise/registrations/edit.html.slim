@@ -1,4 +1,4 @@
-div.container.text-center.mt-5
+.container.text-center.mt-5
   h2
     = "パスワード変更"
     /= resource_name.to_s.humanize
@@ -35,9 +35,10 @@ div.container.text-center.mt-5
       = f.password_field :current_password, autocomplete: "current-password"
     .actions
       = f.submit "変更"
-  h3.mt-5
+    .mt-5
+      = button_to "アカウント消去", registration_path(resource_name), data: { confirm: "本当に消去してよろしいですか?" }, method: :delete, class: "delete_button"
+  /h3.mt-5
     | アカウントを消去する
-  p
+  /p
     /| Unhappy?
-    = button_to "アカウント消去", registration_path(resource_name), data: { confirm: "本当に消去してよろしいですか?" }, method: :delete
-  = link_to "Back", :back
+    = button_to "アカウント消去", registration_path(resource_name), data: { confirm: "本当に消去してよろしいですか?" }, method: :delete, class: "delete_button"

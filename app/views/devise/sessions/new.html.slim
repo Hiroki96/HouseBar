@@ -1,7 +1,5 @@
-div.registration
-  div.registration-container.text-center
-    //h2.mt-lg-5
-      | ログイン
+.registration
+  .registration-container.text-center
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       h2.mt-lg-5
         | ログイン
@@ -19,7 +17,6 @@ div.registration
           = f.label :remember_me
       .actions.mt-5
         = f.submit "ログイン"
-      .mt-5.login_form_bottom
-        /= render "devise/shared/links"
+      .actions.login_form_bottom.mt-5
         = link_to "新規登録", new_user_registration_url
 .footer

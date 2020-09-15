@@ -1,49 +1,15 @@
-/- @likes.each do |like|
-  = link_to user_path(like.user)
-    = image_tag like.user.image.to_s, class: "icon_image"
-    br
-    = like.user.name
-    br
-    = like.user.email
-    br
-    = like.user.profile
-/div.container.mt-5
-  div.text-left
-    = image_tag @user.image.to_s, class: "icon_image"
-    .ml-4
-      = @user.name
-    /= image_tag @post.image.variant(resize:'90x90').processed if @post.image.attached?
-    = image_tag @post.image, class: "post" if @post.image.attached?
-    div.post_contents
-      - @post.categories.each do |category|
-        = "・#{category.name}　"
-      .text-center.mt-3
-        = @post.description
-      .text-right.like
-        = "#{@post.likes.count}いいね"
-        br
-        = created_time(@post.created_at)
-        br
-  div.user_index.likes
-    p
-      = "#{@likes.count}人のユーザーがいいねしました"
-    - @likes.each do |like|
-      = link_to user_path(like.user)
-        .mt-3
-          = image_tag like.user.image.to_s, class: "icon_image"
-          = like.user.name
-div.container.mt-5
+.container.mt-5
   .text-center
     = image_tag @user.image.to_s, class: "icon_image"
     br
     = @user.name
     .mt-5
     = image_tag @post.image.variant(resize:'200x200').processed if @post.image.attached?
-  div.user_index
+  .user_index
     p
       = "#{@post.likes.count}人のユーザーにいいねされています"
     - @likes.each do |like|
-      = link_to user_path(like)
+      = link_to user_path(like.user)
         .mt-3
           = image_tag like.user.image.to_s, class: "icon_image"
           = like.user.name

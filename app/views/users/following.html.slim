@@ -1,9 +1,9 @@
-div.container.mt-5
+.container.mt-5
   .text-center
     = image_tag @user.image.to_s, class: "icon_image"
     br
     = @user.name
-  div.user_index
+  .user_index
     p
       = "#{@user.follower.count}人をフォロー中"
     - @followings.each do |following|
