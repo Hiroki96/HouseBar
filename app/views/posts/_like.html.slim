@@ -1,7 +1,0 @@
-= link_to "#{@post.likes.count}", post_likes_path(@post)
-- if @post.liked?(current_user)
-  = link_to  post_like_path(@post.id), method: :delete do
-    span class= 'fas fa-heart like_icon'
-- else
-  = link_to post_likes_path(@post.id), method: :post do
-    span class= 'far fa-heart'

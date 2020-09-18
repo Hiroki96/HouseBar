@@ -4,6 +4,9 @@
     br
     = @user.name
     br
+    - PostCategoryRelationship.where(post_id: current_user.posts).group(:category_id).select('count(*) as count, category_id').each do |post_category_relationship|
+      p #{post_category_relationship.category.name}(#{post_category_relationship.count})
+
     = simple_format(@user.profile)
     .mt-2
     = link_to "#{ @user.follower.count }フォロー　", user_following_path(@user)
