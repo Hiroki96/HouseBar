@@ -1,14 +1,21 @@
 .container.text-center.mt-5
   = image_tag @user.image.to_s, class: "icon_image"
   = form_with model: @user, local: true do |f|
+    = render 'layouts/error_messages', model: f.object
     .field
       p 名前の変更
       = f.text_field :name
     .field
       p プロフィール画像の変更
       = f.file_field :image
-    .field.profile
+    .field
+      p 体重(kg)を整数で入力してください
+      p.attention ※体重がプロフィールに反映されたり情報が公開されることはありません。
+      = f.number_field :weight, placeholder: "体重(kg)"
+      span kg
+      .field.profile
       p プロフィールの変更
-      = f.text_area :profile, size: "50x10", :placeholder => "好きなお酒などを書いてプロフィールを設計しよう！"
-    .actions
+      = f.text_area :profile, size: "50x10", placeholder: "好きなお酒などを書いてプロフィールを設計しよう！"
+    .actions.mb-5
       = f.submit
+.footer

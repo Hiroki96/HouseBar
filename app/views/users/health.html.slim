@@ -1,0 +1,100 @@
+- if current_user == @user && current_user.weight.present?
+  .management.mt-5.mb-5
+    .text-center
+      = image_tag @user.image.to_s, class: "icon_image"
+      .mt-1
+        = @user.name
+    - PostCategoryRelationship.where(post_id: current_user.posts).group(:category_id).select('count(*) as count, category_id').each do |post_category_relationship|
+      p #{post_category_relationship.category.name} #{post_category_relationship.count}杯
+    = "投稿数: #{@posts.count}"
+    br
+    = "体重: #{@user.weight}kg"
+    br
+    = "合計摂取量: #{@posts.all.sum(:amount)}ml"
+    br
+    - if @posts.count == 0
+      = "平均アルコール度数: 0%"
+    - else
+      = "平均アルコール度数: #{@posts.all.average(:alcohol).floor(2)}%"
+    .mt-5.text-center
+      = link_to new_post_path(current_user) do
+        span class= "fas fa-clone border_orange"  投稿する
+  - @posts.each do |post|
+    - if post.alcohol.present? && post.amount.present? && current_user.weight.present?
+      .health.mb-5
+        .time
+          = created_time(post.created_at)
+        .message
+          - @concentration = (post.alcohol * post.amount) * 100 / (833 * current_user.weight)
+          - if @concentration <= 4
+            .danger-1
+              = "アルコール血中濃度0.0#{@concentration}%  あなたの状態は「爽快」です。"
+          -elsif @concentration <= 10
+            .danger-2
+              = "アルコール血中濃度0.0#{@concentration}%  あなたの状態は「ほろ酔い」です。"
+          -elsif @concentration <= 15
+            .danger-3
+              = "アルコール血中濃度0.#{@concentration}%  あなたの状態は「酩酊初期」です。血中濃度がやや高いです。"
+          -elsif @concentration <= 30
+            .danger-4
+              = "アルコール血中濃度0.#{@concentration}%  あなたの状態は「酩酊」です。血中濃度が高い状態です。"
+          -elsif @concentration <= 40
+            .danger-5
+              = "アルコール血中濃度0.#{@concentration}%  あなたの状態は「泥酔」です。血中濃度がかなり高いです。"
+          -elsif @concentration > 40
+            .danger-6
+              = "アルコール血中濃度0.#{@concentration}%  あなたの状態は「昏睡」です。かなり危険な状態です。"
+        .health_contents
+          - post.categories.each do |category|
+            = "・#{category.name} "
+          = "＃ #{post.amount}ml"
+          = " ＃ #{post.alcohol}%"
+          .post_image
+            = link_to post_path(post)
+              = image_tag post.image.variant(resize:'200x200').processed if post.image.attached?
+            .post_description
+              = simple_format(post.description)
+  .container.text-center.mb-5
+    table.mt-5 border=1 width="1100" height="250"
+      tr
+        th 血中濃度（％）
+        th bgcolor = "#FFE3A0" 0.02～0.04
+        th bgcolor = "#FFE438" 0.05～0.09
+        th bgcolor = "#FFCF14" 0.10～0.15
+        th bgcolor = "#FFA313" 0.16～0.30
+        th bgcolor = "#FF541E" 0.31～0.40
+        th bgcolor = "#FF2E0E" 0.41～0.50
+      tr
+        th 状態
+        th bgcolor = "#FFE3A0" 爽快
+        th bgcolor = "#FFE438" ほろ酔い
+        th bgcolor = "#FFCF14" 酩酊初期
+        th bgcolor = "#FFA313" 酩酊
+        th bgcolor = "#FF541E" 泥酔
+        th bgcolor = "#FF2E0E" 昏睡
+-else
+  .container.text-center
+    h1.title アルコール血中濃度とは？
+    h2.content 飲酒した場合、アルコールの大部分は小腸から吸収され、小腸から一度肝臓を通って分解されたなかった分が血中へ流れて行き、その後肝臓で少しずつ分解されていきます。アルコール血中濃度は吸収しながら分解するとして計算します。
+    table.mt-5 border=1 width="1100" height="250"
+      tr
+        th 血中濃度（％）
+        th bgcolor = "#FFE3A0" 0.02～0.04
+        th bgcolor = "#FFE438" 0.05～0.09
+        th bgcolor = "#FFCF14" 0.10～0.15
+        th bgcolor = "#FFA313" 0.16～0.30
+        th bgcolor = "#FF541E" 0.31～0.40
+        th bgcolor = "#FF2E0E" 0.41～0.50
+      tr
+        th 状態
+        th bgcolor = "#FFE3A0" 爽快
+        th bgcolor = "#FFE438" ほろ酔い
+        th bgcolor = "#FFCF14" 酩酊初期
+        th bgcolor = "#FFA313" 酩酊
+        th bgcolor = "#FF541E" 泥酔
+        th bgcolor = "#FF2E0E" 昏睡
+    h2.mt-5 HouseBarではプロフィール設定画面にて体重を設定し、お酒を投稿する際にアルコール度数と量を指定すると血中濃度を自動で計算します。
+    .weight_button
+      = link_to edit_user_path(current_user) do
+        span.border_orange 体重を設定する
+  .footer

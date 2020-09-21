@@ -1,10 +1,16 @@
 -if @user == current_user
   .mypage.float-right
     ul.list-unstyled
-      li = link_to "プロフィール設定", edit_user_path(current_user)
-      li = link_to "パスワード変更", edit_user_registration_path(current_user)
-      li = link_to "投稿する", new_post_path(current_user)
-      li = link_to "ログアウト", destroy_user_session_path, method: :delete
+      li.border_orange = link_to new_post_path(current_user)do
+        span class= 'fas fa-clone'   投稿する
+      li.border_orange = link_to health_user_path(current_user) do
+        span class= 'fas fa-briefcase-medical'  健康管理ページ
+      li.border_orange = link_to edit_user_registration_path(current_user) do
+        span class= 'fas fa-unlock-alt'  パスワード変更
+      li.border_orange = link_to edit_user_path(current_user) do
+        span class= 'fas fa-cog'  プロフィール設定
+      li.border_orange = link_to destroy_user_session_path, method: :delete do
+        sapn class= 'fas fa-sign-out-alt'  ログアウト
     br
   = render 'users/user', current_user: @user
 -else

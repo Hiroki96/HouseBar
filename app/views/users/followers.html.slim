@@ -3,11 +3,14 @@
     = image_tag @user.image.to_s, class: "icon_image"
     br
     = @user.name
-  .user_index
-    p
-      = "#{@user.followed.count}人にフォローされています"
-    - @followers.each do |follower|
-      = link_to user_path(follower)
-        .mt-3
-          = image_tag follower.image.to_s, class: "icon_image"
-          = follower.name
+  - if @user.followed.count == 0
+    p.text-center.mt-5 まだフォローされているユーザーがいません。
+  - else
+    .user_index
+      p
+        = "#{@user.followed.count}人にフォローされています"
+      - @followers.each do |follower|
+        = link_to user_path(follower)
+          .mt-3
+            = image_tag follower.image.to_s, class: "icon_image"
+            = follower.name

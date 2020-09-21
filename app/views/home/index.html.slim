@@ -1,7 +1,12 @@
-div.top
+.top
   h1 HouseBar
   = image_tag 'home_top_image.jpeg', class: 'img-fluid'
   h3 お家でのお酒を投稿して拡散しましょう
-  br
-  = link_to '新規登録', new_user_registration_url
-  = link_to 'ログイン', new_user_session_path
+  .mt-5
+    = link_to new_user_registration_url do
+      span.border_orange 新規登録
+    = link_to new_user_session_path do
+      span.border_orange ログイン
+.top_contents
+  .top_image
+    = image_tag 'top_page_image.png', size: "600x400"

@@ -27,5 +27,5 @@
     - @posts.each do |post|
       = link_to post_path(post)
         = image_tag post.image, class: "post" if post.image.attached?
-    /.paginate
+    //.paginate
       = paginate @posts

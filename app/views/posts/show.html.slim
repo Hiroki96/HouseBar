@@ -8,6 +8,9 @@
     .text-left
       - @post.categories.each do |category|
         = "・#{category.name} "
+      - if @post.alcohol || @post.amount
+        = "# #{@post.alcohol}%　"
+        = "# #{@post.amount}ml"
       br
     = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
     .text-right
@@ -19,7 +22,7 @@
     .text-right
       - if @user == current_user
         = link_to edit_post_path(@post.id) do
-          span class= 'fas fa-pen'style='color: orange;'編集
+          span.border_orange class= 'fas fa-pen' 編集
     br
     - @comments.each do |comment|
       br
@@ -41,3 +44,4 @@
         = f.text_area :content, size: "50x4"
         .mb-5.actions
           = f.submit "コメントをする"
+.footer

@@ -8,6 +8,7 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     script src="https://kit.fontawesome.com/d7e1492b15.js" crossorigin="anonymous"
+    = favicon_link_tag('default.jpg')
   body
     header
       - flash.each do |key, value|
@@ -27,6 +28,5 @@ html
         - else
           = link_to '新規登録', new_user_registration_url, class: "mr-4"
           = link_to 'ログイン', new_user_session_path
-      //footer
         //= image_tag "footer_image.png", class: 'img-fluid'
     = yield

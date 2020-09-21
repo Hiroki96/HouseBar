@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update, :create] do
     resources :likes, only: [:show]
     get :following, :followers
-
+    member do
+      get :health
+    end
   end
 
   resources :posts do

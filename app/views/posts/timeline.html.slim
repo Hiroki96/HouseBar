@@ -39,4 +39,6 @@
               = simple_format(post.description)
   -else
     p フォローしているユーザーはまだ投稿していません。
-    = link_to "興味のあるユーザーを探す", posts_path
+    = link_to posts_path do
+      span.border_orange 興味のあるユーザーを探す
+

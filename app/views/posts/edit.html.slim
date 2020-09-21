@@ -15,9 +15,11 @@
       = created_time(@post.created_at)
     .text-right.mt-3
       = link_to post_path(@post.id), method: :delete, data: {confirm: '投稿を削除してもよろしいですか？'} do
-        span class="far fa-trash-alt" style="color: red;"削除
+        span class='far fa-trash-alt' style='color: red;' 削除
     .mt-3
       = form_with model: @post, local: true do |f|
+        = render 'layouts/error_messages', model: f.object
         = f.text_area :description, size: "50x10"
         .mb-5.actions
           = f.submit
+.footer

@@ -10,3 +10,9 @@ ja:
         image: プロフィール画像
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
+        current_password: 現在のパスワード
+      post:
+        image: 投稿画像
+        description: 投稿内容
+        alcohol: アルコール度数
+        amount: 飲酒量

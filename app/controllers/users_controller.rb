@@ -12,13 +12,31 @@ class UsersController < ApplicationController
   end
 
   def update
-    User.find(params[:id]).update(user_params)
-    redirect_to user_path(current_user)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(current_user)
+      flash[:notice] = "プロフィールを変更しました。"
+    else
+      render "users/edit"
+    end
   end
+
+  #def update
+  #if User.find(params[:id]).update(user_params)
+  #redirect_to user_path(current_user)
+  #else
+  #render "users/edit"
+  #end
+  #end
 
   def create
     User.create(user_params)
     redirect_to user_path(current_user)
+  end
+
+  def health
+    @user = User.find(params[:id])
+    @posts = Post.where(id: @user.post_ids).order(created_at: 'DESC')
   end
 
   # 自分がフォローしているユーザー一覧
@@ -36,7 +54,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :image, :profile)
+    params.require(:user).permit(:name, :image, :profile, :weight)
   end
 
 end

@@ -5,7 +5,8 @@ class Post < ApplicationRecord
   has_many :categories, through: :post_category_relationships
   belongs_to :user
   has_one_attached :image
-  validates :description, :image, presence:true
+  validates :image, :alcohol, :amount, presence: true
+  validates :description, presence: true, length: { maximum: 500 }
 
   def liked?(current_user)
     likes.where(user_id: current_user.id).exists?

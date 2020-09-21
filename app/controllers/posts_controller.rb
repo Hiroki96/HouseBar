@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   before_action :authenticate_user!
 
   def index
@@ -20,7 +21,6 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿に成功しました。"
       redirect_to user_path(current_user)
     else
-      flash[:alert] = "投稿できませんでした。"
       render action: :new
     end
   end
@@ -34,9 +34,20 @@ class PostsController < ApplicationController
     @user = User.find_by(id: @post.user_id)
   end
 
+  #def update
+  #Post.find(params[:id]).update(params.require(:post).permit(:description))
+  #redirect_to user_path(current_user)
+  #end
+  #
   def update
-    Post.find(params[:id]).update(params.require(:post).permit(:description))
-    redirect_to user_path(current_user)
+    @post = Post.find_by(id: params[:id])
+    @user = User.find_by(id: @post.user_id)
+    if @post.update(post_params)
+      redirect_to user_path(current_user)
+      flash[:notice] = "投稿を編集しました"
+    else
+      render "posts/edit"
+    end
   end
 
   def destroy
@@ -59,7 +70,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-  params.require(:post).permit(:description, :image, category_ids: [])
+  params.require(:post).permit(:description, :image, :amount, :alcohol, category_ids: [] )
   end
 
 end
