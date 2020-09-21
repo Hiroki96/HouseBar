@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post 'unfollow/:id', to: 'relationships#destroy', as: 'unfollow'
   root 'home#index'
 
-  devise_for :users
+  devise_for :users, :controllers => {:omniauth_callbacks => 'users/omniauth_callbacks'}
 
   resources :users, only: [:show, :edit, :update, :create] do
     resources :likes, only: [:show]

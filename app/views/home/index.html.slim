@@ -10,3 +10,5 @@
 .top_contents
   .top_image
     = image_tag 'top_page_image.png', size: "600x400"
+    = link_to user_twitter_omniauth_authorize_path do
+      p twitter
