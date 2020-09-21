@@ -10,7 +10,13 @@
       p
         = "#{@user.followed.count}人にフォローされています"
       - @followers.each do |follower|
-        = link_to user_path(follower)
-          .mt-3
-            = image_tag follower.image.to_s, class: "icon_image"
-            = follower.name
+        .following
+          .follow_user
+            = link_to user_path(follower)
+              .mt-3
+                = image_tag follower.image.to_s, class: "icon_image"
+                = follower.name
+          .follow_button
+            - unless follower == current_user
+              span id='follow-button_#{ follower.id }'
+                = render "users/follow-button", user: follower

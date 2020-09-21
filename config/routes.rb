@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  post 'follow/:id', to: 'relationships#create', as: 'follow'
-  post 'unfollow/:id', to: 'relationships#destroy', as: 'unfollow'
+  post 'follow/:id', to: 'relationships#follow', as: 'follow'
+  post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   root 'home#index'
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'users/omniauth_callbacks'}
