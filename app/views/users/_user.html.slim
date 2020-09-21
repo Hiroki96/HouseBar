@@ -6,13 +6,17 @@
     br
     = simple_format(@user.profile)
     .mt-2
-    = link_to "#{ @user.follower.count }フォロー　", user_following_path(@user)
-    = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
+      span id='following-count_#{ @user.id }'
+        = link_to "#{ @user.follower.count }フォロー　", user_following_path(@user)
+      span id='follower-count_#{ @user.id }'
+        = link_to "#{ @user.followed.count }フォロワー", user_followers_path(@user)
     .mt-2
-    - unless @user == current_user
-      - if current_user.following?(@user)
+      - unless @user == current_user
+        span id='follow-button_#{ @user.id }'
+          = render "users/follow-button", user: @user
+      /- if current_user.following?(@user)
         = link_to 'フォロー中', unfollow_path(@user), method: :post, class: 'btn unfollow-button'
-      - else
+      /- else
         = link_to 'フォローする', follow_path(@user), method: :post, class: 'btn follow-button'
     .mt-2
     = "#{@user.posts.count}投稿"

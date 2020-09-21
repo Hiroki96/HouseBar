@@ -402,3 +402,14 @@ main {
 .must {
   color: #ff231a
 }
+.following {
+  width: 300px;
+  .follow_user {
+    display: inline-block;
+  }
+  .follow_button {
+    display: inline-block;
+    margin-top: 40px;
+    float: right;
+  }
+}

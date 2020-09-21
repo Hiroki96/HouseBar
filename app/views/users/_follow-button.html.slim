@@ -1,0 +1,4 @@
+- if current_user.following?(user)
+  = link_to 'フォロー中', unfollow_path(user), method: :post, class: 'btn unfollow-button', remote: true
+- else
+  = link_to 'フォローする', follow_path(user), method: :post, class: 'btn follow-button', remote: true

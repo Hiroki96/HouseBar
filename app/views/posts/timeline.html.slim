@@ -9,6 +9,9 @@
         = link_to user_path(post.user)
           = image_tag post.user.image.to_s, class: "header_icon_image"
           = post.user.name
+        - unless post.user == current_user
+          span.ml-2 id='follow-button_#{ post.user.id }'
+            = render "users/follow-button", user: post.user
       .mt-2
         = link_to post_path(post)
           = image_tag post.image.variant(resize:'200x200').processed if post.image.attached?
