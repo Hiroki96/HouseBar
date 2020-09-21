@@ -282,7 +282,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.2)
   mini_magick
-  pg (>= 0.18, < 2.0)
+  pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
   ransack
