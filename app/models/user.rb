@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,:omniauthable, omniauth_providers: [:twitter]
   validates :name, presence: true, length: { maximum: 20 }
 
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
@@ -12,6 +12,24 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  def self.find_for_oauth(auth)
+    user = User.find_by(uid: auth.uid, provider: auth.provider)
+
+    user ||= User.create!(
+        uid: auth.uid,
+        provider: auth.provider,
+        name: auth[:info][:name],
+        email: User.dummy_email(auth),
+        password: Devise.friendly_token[0, 20]
+    )
+
+    user
+  end
+
+  def self.dummy_email(auth)
+    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
+  end
 
   mount_uploader :image, ImageUploader
 
