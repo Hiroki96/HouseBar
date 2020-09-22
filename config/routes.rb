@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  root 'home#index'
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
-  root 'home#index'
-
   devise_for :users, :controllers => {:omniauth_callbacks => 'users/omniauth_callbacks'}
 
   resources :users, only: [:show, :edit, :update, :create] do

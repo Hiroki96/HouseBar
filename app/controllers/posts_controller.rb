@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find(params[:id])
     @user = User.find_by(id: @post.user_id)
     @comment = Comment.new
     @comments = @post.comments
@@ -30,17 +30,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find(params[:id])
     @user = User.find_by(id: @post.user_id)
   end
 
-  #def update
-  #Post.find(params[:id]).update(params.require(:post).permit(:description))
-  #redirect_to user_path(current_user)
-  #end
-  #
   def update
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find(params[:id])
     @user = User.find_by(id: @post.user_id)
     if @post.update(post_params)
       redirect_to user_path(current_user)
@@ -51,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find(params[:id])
     if @post.destroy
       flash[:notice] = "投稿を削除しました。"
       redirect_to user_path(current_user)

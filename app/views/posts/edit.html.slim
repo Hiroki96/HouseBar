@@ -9,7 +9,7 @@
       - @post.categories.each do |category|
         = "・#{category.name}　"
       br
-    = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
+    = image_tag @post.image.variant(resize:'700x700').processed if @post.image.attached?
     .text-right
       = link_to "#{@post.likes.count}いいね", post_likes_path(@post)
       = created_time(@post.created_at)

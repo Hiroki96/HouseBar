@@ -12,7 +12,7 @@
         = "# #{@post.alcohol}%　"
         = "# #{@post.amount}ml"
       br
-    = image_tag @post.image.variant(resize:'900x900').processed if @post.image.attached?
+    = image_tag @post.image.variant(resize:'700x700').processed if @post.image.attached?
     .text-right
       div id ="likes_buttons_#{@post.id}"
         = render partial: "likes/like"

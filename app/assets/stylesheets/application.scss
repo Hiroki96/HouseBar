@@ -12,8 +12,6 @@ html {
 body {
   padding:0; /*　追加*/
   margin:0;
-  //flex-direction: column;
-  //min-height: 100vh;
   height: 100%;
   background-color: #f1f1ef;
   a {
@@ -36,34 +34,13 @@ body {
     width: 100px;
     height: 30px;
   }
-  //display: flex;
-  //flex-flow: column;
-  //min-height: 100vh;
-}
-main {
-  //flex: 1;
 }
 .footer {
   margin-top: 150px;
-  ///position: absolute; /*　変更*/
   bottom: 0;
-  ////width: 100%;
-  /////height: 100px;
-  //margin-bottom: auto;
-  //margin-top: auto;
-  ///position: absolute;
-  /////position: fixed;
-  /////bottom: 0;
   background-image: url(footer_image.png);
-  //background-repeat: repeat-x;
   height: 80px;
   width: 100%;
-  //display: flex;
-  //flex-flow: column;
-  //min-height: 100vh;
-  img {
-    //eight: 70px;
-  }
 }
 
 .new_user {
@@ -72,18 +49,6 @@ main {
   margin: auto;
 }
 
-.wrapper {
-  position: relative;
-  .text {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    h1 {
-      font-size: 100px;
-      color: darkorange;
-    }
-  }
-}
 .top {
   background-color: #f1f1ef;
   text-align: center;
@@ -97,7 +62,6 @@ main {
     color: darkorange;
     padding-top: 40px;
     text-shadow: -1px -2px 3px #808080;
-    //font-family: "Ribeye";
     font-family: 'Sacramento', cursive;
   }
   h3 {
@@ -129,7 +93,6 @@ main {
   height: 300px;
   float: left;
   margin: 20px;
-  //margin: 20px 0 20px 0;
   object-fit: cover;
 }
 .container {
@@ -254,20 +217,13 @@ main {
   }
 }
 .post-image {
-  //text-align: right;
   display: inline-block;
-  //width: 900px;
-  //margin-right: auto;
-  //margin-left: auto;
   a {
     padding-right: 5px;
   }
 }
 .user-post {
   text-align: center;
-  //span {
-    //color: darkorange;
-  //}
 }
 .post-img {
   text-align: right;

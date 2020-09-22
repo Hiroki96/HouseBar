@@ -7,8 +7,8 @@
       span.border_orange 新規登録
     = link_to new_user_session_path do
       span.border_orange ログイン
+    = link_to user_twitter_omniauth_authorize_path do
+      p twitter
 .top_contents
   .top_image
     = image_tag 'top_page_image.png', size: "600x400"
-    = link_to user_twitter_omniauth_authorize_path do
-      p twitter

@@ -9,7 +9,13 @@
     p
       = "#{@post.likes.count}人のユーザーにいいねされています"
     - @likes.each do |like|
-      = link_to user_path(like.user)
-        .mt-3
-          = image_tag like.user.image.to_s, class: "icon_image"
-          = like.user.name
+      .following
+        .follow_user
+          = link_to user_path(like.user)
+            .mt-3
+              = image_tag like.user.image.to_s, class: "icon_image"
+              = like.user.name
+        .follow_button
+          - unless like.user == current_user
+            span id='follow-button_#{ like.user.id }'
+              = render "users/follow-button", user: like.user
