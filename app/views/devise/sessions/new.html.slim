@@ -15,8 +15,12 @@
         .field.mt-5
           = f.check_box :remember_me
           = f.label :remember_me
-      .actions.mt-5
+      .actions.mt-4
         = f.submit "ログイン"
-      .actions.mt-5.login_form_bottom
+      .actions.mt-4
+        = link_to user_twitter_omniauth_authorize_path do
+          span.fab.fa-twitter
+          span  twitterでログイン
+      .actions.mt-4.login_form_bottom
         = link_to "新規登録", new_user_registration_url
 .footer
