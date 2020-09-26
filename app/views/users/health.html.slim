@@ -29,7 +29,7 @@
           - if @concentration <= 4
             .danger-1
               = "アルコール血中濃度0.0#{@concentration}%  あなたの状態は「爽快」です。"
-          -elsif @concentration <= 10
+          -elsif @concentration < 10
             .danger-2
               = "アルコール血中濃度0.0#{@concentration}%  あなたの状態は「ほろ酔い」です。"
           -elsif @concentration <= 15
@@ -58,7 +58,7 @@
     table.mt-5 border=1 width="1100" height="250"
       tr
         th 血中濃度（％）
-        th bgcolor = "#FFE3A0" 0.02～0.04
+        th bgcolor = "#FFE3A0" ～0.04
         th bgcolor = "#FFE438" 0.05～0.09
         th bgcolor = "#FFCF14" 0.10～0.15
         th bgcolor = "#FFA313" 0.16～0.30
@@ -79,7 +79,7 @@
     table.mt-5 border=1 width="1100" height="250"
       tr
         th 血中濃度（％）
-        th bgcolor = "#FFE3A0" 0.02～0.04
+        th bgcolor = "#FFE3A0" ～0.04
         th bgcolor = "#FFE438" 0.05～0.09
         th bgcolor = "#FFCF14" 0.10～0.15
         th bgcolor = "#FFA313" 0.16～0.30

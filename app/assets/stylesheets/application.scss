@@ -65,14 +65,14 @@ body {
     font-family: 'Sacramento', cursive;
   }
   h3 {
-    margin-top: 320px;
+    margin-top: 150px;
     text-align: center;
   }
 }
 .top_contents {
-  margin: 320px 100px 0 100px;
+  margin: 150px 100px 0 100px;
   img {
-    border: thick solid darkorange;
+    margin-top: 80px;
   }
 }
 
@@ -359,7 +359,7 @@ body {
   color: #ff231a
 }
 .following {
-  width: 300px;
+  width: 400px;
   .follow_user {
     display: inline-block;
   }
@@ -368,4 +368,15 @@ body {
     margin-top: 40px;
     float: right;
   }
+}
+.fab.fa-twitter {
+  color: #11ddff
+}
+.logo {
+  font-family: 'Sacramento', cursive;
+  color: darkorange;
+  font-size: 40px;
+}
+.login_link {
+  margin: 300px 0 300px 0;
 }

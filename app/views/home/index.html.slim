@@ -1,14 +1,28 @@
 .top
   h1 HouseBar
   = image_tag 'home_top_image.jpeg', class: 'img-fluid'
-  h3 お家でのお酒を投稿して拡散しましょう
-  .mt-5
-    = link_to new_user_registration_url do
-      span.border_orange 新規登録
-    = link_to new_user_session_path do
-      span.border_orange ログイン
-    = link_to user_twitter_omniauth_authorize_path do
-      p twitter
-.top_contents
-  .top_image
-    = image_tag 'top_page_image.png', size: "600x400"
+  .top_contents
+    h2.text-center
+      span.logo HouseBar
+      |はお家での一杯を投稿し検索、閲覧できるSNSサービスです。
+    .top_image.text-center
+      = image_tag 'post_page_image.png', size: "1200x600"
+  .top_contents
+    h2.text-center
+      |健康管理にも気をつけましょう。
+      br
+        |健康管理ページより、投稿したお酒のアルコール血中濃度を記録できます。
+    .top_image.text-center
+      = image_tag 'top_page_image.png', size: "1200x600"
+  .login_link
+    h3 お家でのお酒を投稿して共有しましょう。
+    .mt-5
+      = link_to new_user_registration_url do
+        span.border_orange 新規登録
+      = link_to new_user_session_path do
+        span.border_orange ログイン
+      .mt-5.actions
+        = link_to user_twitter_omniauth_authorize_path do
+          span.fab.fa-twitter
+          span  twitterでログイン
+.footer

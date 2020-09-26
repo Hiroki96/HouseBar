@@ -1,8 +1,10 @@
 .ranking.float-right
-  span class="fas fa-crown"  いいね数ランキング
+  span class="fas fa-crown" style='color: yellow;'
+  span いいね数ランキング
   - @all_ranks.each.with_index(1) do |post, i|
     .mt-5
-      span class="fas fa-crown" = "第#{i}位"
+      span class="fas fa-crown" style='color: yellow;'
+      span = "第#{i}位"
       span.ml-4 = "#{post.likes.count}いいね"
     .ml-3
       .mt-2

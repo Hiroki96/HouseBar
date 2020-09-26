@@ -20,13 +20,23 @@ html
         .logo.mr-auto
           = link_to 'HouseBar', root_path
         - if user_signed_in?
-          = link_to user_path(current_user), class: "mr-4"
-            = image_tag current_user.image.to_s, class: "header_icon_image"
-            = current_user.name
-          = link_to '投稿一覧/検索', posts_path, class: "mr-4"
-          = link_to 'タイムライン',  timeline_posts_url(current_user)
+          .mr-4
+            = link_to user_path(current_user)
+              = image_tag current_user.image.to_s, class: "header_icon_image"
+              = current_user.name
+          .mr-4
+            = link_to posts_path do
+              span.fas.fa-search.border_orange  投稿一覧/検索
+          = link_to timeline_posts_url(current_user) do
+            span.fas.fa-glass-cheers.border_orange  タイムライン
         - else
-          = link_to '新規登録', new_user_registration_url, class: "mr-4"
-          = link_to 'ログイン', new_user_session_path
+          .mr-4
+            = link_to '新規登録', new_user_registration_url
+          .mr-4
+            = link_to 'ログイン', new_user_session_path
+          .mr-4
+            = link_to user_twitter_omniauth_authorize_path do
+              span.fab.fa-twitter
+              span  twitter
         //= image_tag "footer_image.png", class: 'img-fluid'
     = yield
