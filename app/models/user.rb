@@ -31,8 +31,6 @@ class User < ApplicationRecord
     "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 
-  mount_uploader :image, ImageUploader
-
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
