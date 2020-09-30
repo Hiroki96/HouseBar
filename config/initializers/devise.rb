@@ -15,7 +15,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '485dcac0ce25d4fa30d847637feb19a29dba42a7380a13ea73d8878430898acc2ce6ff5a14ac63bf4a7d4e2be20f8ddee2086e4c19bc0afef2d829117a1a145c'
-  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], scope: 'email', oauth_callback: "https://house_bar.herokuapp.com/users/auth/twitter/callback"
+  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], scope: 'email', oauth_callback: "https://house-bar.herokuapp.com/users/auth/twitter/callback"
   #config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], scope: 'email', oauth_callback: "http://127.0.0.1:3000/users/auth/twitter/callback"
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
