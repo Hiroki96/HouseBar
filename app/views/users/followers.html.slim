@@ -1,6 +1,9 @@
 .container.mt-5
   .text-center
-    = image_tag @user.image.to_s, class: "icon_image"
+    - if @user.image.attached?
+      = image_tag @user.image, class: "icon_image"
+    - else
+      = image_tag 'default.jpg', class: "icon_image"
     br
     = @user.name
   - if @user.followed.count == 0
@@ -14,7 +17,10 @@
           .follow_user
             = link_to user_path(follower)
               .mt-3
-                = image_tag follower.image.to_s, class: "icon_image"
+                - if follower.image.attached?
+                  = image_tag follower.image, class: "icon_image"
+                - else
+                  = image_tag 'default.jpg', class: "icon_image"
                 = follower.name
           .follow_button
             - unless follower == current_user

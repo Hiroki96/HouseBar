@@ -1,6 +1,9 @@
 .container.text-center
   .mt-5
-    = image_tag @user.image.to_s, class: "icon_image"
+    - if @user.image.attached?
+      = image_tag @user.image, class: "icon_image"
+    - else
+      = image_tag 'default.jpg', class: "icon_image"
     br
     = @user.name
     br
@@ -14,14 +17,10 @@
       - unless @user == current_user
         span id='follow-button_#{ @user.id }'
           = render "users/follow-button", user: @user
-      /- if current_user.following?(@user)
-        = link_to 'フォロー中', unfollow_path(@user), method: :post, class: 'btn unfollow-button'
-      /- else
-        = link_to 'フォローする', follow_path(@user), method: :post, class: 'btn follow-button'
     .mt-2
-    = "#{@user.posts.count}投稿"
+      = "#{@user.posts.count}投稿"
     .mt-2
-    = link_to "#{@user.likes.count}いいね", user_like_path(@user)
+      = link_to "#{@user.likes.count}いいね", user_like_path(@user)
     .border_bottom
     .ml-5.mt-5
       - @posts.each do |post|

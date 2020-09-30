@@ -1,6 +1,9 @@
 .container.text-center
   .mt-5
-    = image_tag @user.image.to_s, class: "icon_image"
+    - if @user.image.attached?
+      = image_tag @user.image, class: "icon_image"
+    - else
+      = image_tag 'default.jpg', class: "icon_image"
     .mt-2
       = @user.name
     .mt-2

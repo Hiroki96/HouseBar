@@ -1,7 +1,10 @@
 - if current_user == @user && current_user.weight.present?
   .management.mt-5.mb-5
     .text-center
-      = image_tag @user.image.to_s, class: "icon_image"
+      - if @user.image.attached?
+        = image_tag @user.image, class: "icon_image"
+      - else
+        = image_tag 'default.jpg', class: "icon_image"
       .mt-1
         = @user.name
     - PostCategoryRelationship.where(post_id: current_user.posts).group(:category_id).select('count(*) as count, category_id').each do |post_category_relationship|

@@ -1,6 +1,9 @@
 .text-center.mt-5
   = link_to user_path(@user)
-    = image_tag @user.image.to_s, class: "icon_image"
+    - if @user.image.attached?
+      = image_tag @user.image, class: "icon_image"
+    - else
+      = image_tag 'default.jpg', class: "icon_image"
     br
     = @user.name
 .user-post
@@ -28,7 +31,10 @@
       br
       .comments
         .text-left.ml-3.mt-2
-          = image_tag comment.user.image.to_s, class: "header_icon_image"
+          - if comment.user.image.attached?
+            = image_tag comment.user.image, class: "header_icon_image"
+          -else
+            = image_tag 'default.jpg', class: "header_icon_image"
           = link_to "@#{comment.user.name}", user_path(comment.user.id)
           .ml-5
             = simple_format(comment.content)
@@ -41,7 +47,8 @@
             br
     .mt-3.text-right
       = form_with model: [@post,@comment], local: true do |f|
+        = render 'layouts/error_messages', model: f.object
         = f.text_area :content, size: "50x4"
         .mb-5.actions
-          = f.submit "コメントをする"
+          =f.submit "コメントする"
 .footer
