@@ -1,5 +1,8 @@
 .container.text-center.mt-5
-  = image_tag @user.image.to_s, class: "icon_image"
+  - if @user.image.attached?
+    = image_tag @user.image, class: "icon_image"
+  - else
+    = image_tag 'default.jpg', class: "icon_image"
   = form_with model: @user, local: true do |f|
     = render 'layouts/error_messages', model: f.object
     .field

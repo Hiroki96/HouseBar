@@ -15,17 +15,11 @@
       -else
         = "#{@search_posts.count}件の投稿が見つかりました。"
     - @search_posts.each do |search_post|
-      //= link_to user_path(search_post.user)
-        = image_tag search_post.user.image.to_s, class: "icon_image"
-        = search_post.user.name
       = link_to post_path(search_post)
         = image_tag search_post.image, class: "post" if search_post.image.attached?
-      /= search_post.description
-      /= created_time(search_post.created_at)
 - else
   .contents.mb-5
     - @posts.each do |post|
       = link_to post_path(post)
         = image_tag post.image, class: "post" if post.image.attached?
-    //.paginate
-      = paginate @posts
+  = paginate @posts

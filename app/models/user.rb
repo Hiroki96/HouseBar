@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one_attached :image
   validates :name, presence: true, length: { maximum: 20 }
 
   def self.find_for_oauth(auth)
@@ -29,6 +30,15 @@ class User < ApplicationRecord
 
   def self.dummy_email(auth)
     "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  def user_image(user_id)
+    user = User.find!(user_id)
+    if user.image.attached?
+      image_tag user.image
+    else
+      image_tag 'default_avatar.jpg'
+    end
   end
 
   def follow(user_id)

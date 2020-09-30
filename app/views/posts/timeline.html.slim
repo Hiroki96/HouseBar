@@ -9,7 +9,10 @@
     .ml-3
       .mt-2
         = link_to user_path(post.user)
-          = image_tag post.user.image.to_s, class: "header_icon_image"
+          - if post.user.image.attached?
+            = image_tag post.user.image, class: "header_icon_image"
+          - else
+            = image_tag 'default.jpg', class: "header_icon_image"
           = post.user.name
         - unless post.user == current_user
           span.ml-2 id='follow-button_#{ post.user.id }'
@@ -25,7 +28,10 @@
           - @posts.each do |post|
             br
             = link_to user_path(post.user)
-              = image_tag post.user.image.to_s, class: "icon_image"
+            - if post.user.image.attached?
+              = image_tag post.user.image, class: "icon_image"
+            - else
+              = image_tag 'default.jpg', class: "icon_image"
               = post.user.name
             .mt-2
             - post.categories.each do |category|
@@ -35,10 +41,6 @@
               = image_tag post.image, class: "posts" if post.image.attached?
             .text-left
               = link_to "#{post.likes.count}", post_likes_path(post)
-              /- if post.liked?(current_user)
-                = link_to 'いいね解除', post_like_path(post.id), method: :delete
-              /- else
-                = link_to 'いいね', post_likes_path(post.id), method: :post
               = created_time(post.created_at)
             .text-center
               = simple_format(post.description)

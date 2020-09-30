@@ -1,6 +1,9 @@
 .text-center.mt-5
   = link_to user_path(@user)
-    = image_tag @user.image.to_s, class: "icon_image"
+    - if @user.image.attached?
+      = image_tag @user.image, class: "icon_image"
+    - else
+      = image_tag 'default.jpg', class: "icon_image"
     br
     = @user.name
 .user-post

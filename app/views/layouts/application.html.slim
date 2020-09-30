@@ -22,7 +22,10 @@ html
         - if user_signed_in?
           .mr-4
             = link_to user_path(current_user)
-              = image_tag current_user.image.to_s, class: "header_icon_image"
+              - if current_user.image.attached?
+                = image_tag current_user.image, class: "header_icon_image"
+              -else
+                = image_tag 'default.jpg', class: "header_icon_image"
               = current_user.name
           .mr-4
             = link_to posts_path do

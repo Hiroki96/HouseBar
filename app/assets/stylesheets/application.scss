@@ -121,7 +121,8 @@ body {
   }
   .border_bottom {
     border-bottom: thin solid #BBBBBB;
-    width: 650px;
+    //width: 650px;
+    width: 45%;
     padding-top: 50px;
     margin: 0 auto;
   }
@@ -198,7 +199,9 @@ body {
 
 .contents{
   margin-top: 80px;
-  margin-left: 50px;
+  margin-left: 200px;
+  width: 80%;
+  height: 100%;
 }
 .pagination {
   text-align: center;
