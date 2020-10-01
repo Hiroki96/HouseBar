@@ -28,14 +28,14 @@
           - @posts.each do |post|
             br
             = link_to user_path(post.user)
-            - if post.user.image.attached?
-              = image_tag post.user.image, class: "icon_image"
-            - else
-              = image_tag 'default.jpg', class: "icon_image"
-              = post.user.name
+              - if post.user.image.attached?
+                = image_tag post.user.image, class: "icon_image"
+              - else
+                = image_tag 'default.jpg', class: "icon_image"
+                = post.user.name
             .mt-2
-            - post.categories.each do |category|
-              = "・#{category.name}　"
+              - post.categories.each do |category|
+                = "・#{category.name}　"
             br
             = link_to post_path(post)
               = image_tag post.image, class: "posts" if post.image.attached?
