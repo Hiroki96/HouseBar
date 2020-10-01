@@ -8,7 +8,7 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     script src="https://kit.fontawesome.com/d7e1492b15.js" crossorigin="anonymous"
-    /= favicon_link_tag('default.jpg')
+    = favicon_link_tag('default.jpg')
   body
     header
       - flash.each do |key, value|
@@ -41,5 +41,4 @@ html
             = link_to user_twitter_omniauth_authorize_path do
               span.fab.fa-twitter
               span  twitter
-        //= image_tag "footer_image.png", class: 'img-fluid'
     = yield

@@ -14,7 +14,6 @@
       br
     = image_tag @post.image.variant(resize:'700x700').processed if @post.image.attached?
     .text-right
-      = link_to "#{@post.likes.count}いいね", post_likes_path(@post)
       = created_time(@post.created_at)
     .text-right.mt-3
       = link_to post_path(@post.id), method: :delete, data: {confirm: '投稿を削除してもよろしいですか？'} do

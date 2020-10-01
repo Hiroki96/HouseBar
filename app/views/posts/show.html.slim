@@ -14,19 +14,17 @@
       - if @post.alcohol || @post.amount
         = "# #{@post.alcohol}%　"
         = "# #{@post.amount}ml"
-      br
     = image_tag @post.image.variant(resize:'700x700').processed if @post.image.attached?
     .text-right
       div id ="likes_buttons_#{@post.id}"
         = render partial: "likes/like"
-      = created_time(@post.created_at)
-    br
     = simple_format(@post.description)
     .text-right
       - if @user == current_user
         = link_to edit_post_path(@post.id) do
           span.border_orange class= 'fas fa-pen' 編集
-    br
+      br
+      = created_time(@post.created_at)
     - @comments.each do |comment|
       br
       .comments
@@ -44,7 +42,6 @@
               span class="far fa-trash-alt" style="color: orange;"
         .text-right.mr-2.mb-2
           = created_time(comment.created_at)
-            br
     .mt-3.text-right
       = form_with model: [@post,@comment], local: true do |f|
         = render 'layouts/error_messages', model: f.object

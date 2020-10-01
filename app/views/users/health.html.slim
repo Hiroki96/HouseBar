@@ -26,7 +26,7 @@
     - if post.alcohol.present? && post.amount.present? && current_user.weight.present?
       .health.mb-5
         .time
-          = created_time(post.created_at)
+          = created_time_to_health(post.created_at)
         .message
           - @concentration = (post.alcohol * post.amount) * 100 / (833 * current_user.weight)
           - if @concentration <= 4
@@ -78,7 +78,7 @@
 -else
   .container.text-center
     h1.title アルコール血中濃度とは？
-    h2.content 飲酒した場合、アルコールの大部分は小腸から吸収され、小腸から一度肝臓を通って分解されたなかった分が血中へ流れて行き、その後肝臓で少しずつ分解されていきます。アルコール血中濃度は吸収しながら分解するとして計算します。
+    h2.content 飲酒した場合、アルコールの大部分は小腸から吸収され、小腸から一度肝臓を通って分解されたなかった分が血中へ流れて行き、その後肝臓で少しずつ分解されていきます。
     table.mt-5 border=1 width="1100" height="250"
       tr
         th 血中濃度（％）
