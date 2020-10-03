@@ -10,7 +10,7 @@
       = f.text_field :name
     .field
       p プロフィール画像の変更
-      = f.file_field :image
+      = f.file_field :image, accept: ".png,.jpeg,.jpg"
     .field
       p 体重(kg)を整数で入力してください
       p.attention ※体重がプロフィールに反映されたり情報が公開されることはありません。

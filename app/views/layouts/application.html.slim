@@ -30,7 +30,7 @@ html
           .mr-4
             = link_to posts_path do
               span.fas.fa-search.border_orange  投稿一覧/検索
-          = link_to timeline_posts_url(current_user) do
+          = link_to timeline_path(current_user) do
             span.fas.fa-glass-cheers.border_orange  タイムライン
         - else
           .mr-4

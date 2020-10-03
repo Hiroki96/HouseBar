@@ -18,7 +18,7 @@
         br
         = f.text_field :name, autofocus: true, autocomplete: "name", :placeholder => "user name"
       .field
-        = f.label :image
+        = f.label :image, accept: ".png,.jpeg,.jpg"
         br
         = f.file_field :image, :size=>"45x10"
       .field
