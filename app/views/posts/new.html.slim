@@ -13,7 +13,7 @@
       .field
         = f.text_area :description, size: "50x10", placeholder: '※必須(500字以内)'
       .field
-        = f.file_field :image
+        = f.file_field :image, accept: ".png,.jpeg,.jpg"
         span.must ※必須
       .field
         p
