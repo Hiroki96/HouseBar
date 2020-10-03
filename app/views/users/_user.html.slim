@@ -2,8 +2,6 @@
   .mt-5
     - if @user.image.attached?
       = image_tag @user.image, class: "icon_image"
-    - elsif @user.uid != nil
-      img.icon_image src="="/#{@user.image_url}""
     - else
       = image_tag 'default.jpg', class: "icon_image"
     br
