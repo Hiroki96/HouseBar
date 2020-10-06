@@ -13,7 +13,7 @@ https://house-bar.herokuapp.com/
 ### 本番環境
 * heroku
 # ・テーブル設計
-![db_image](public/images/db_image.png)
+![db_image](https://user-images.githubusercontent.com/67972760/95179779-11664480-07fc-11eb-917d-0024cf76cc7f.png)
 # ・機能一覧
 * ユーザー登録機能(devise)
 * ログイン・ログアウト機能(devise)
