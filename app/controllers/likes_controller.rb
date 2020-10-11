@@ -1,8 +1,8 @@
 class LikesController < ApplicationController
+  before_action :set_post, only: %i(index create destroy)
 
   def index
-    @post = Post.find(params[:post_id])
-    @likes = Like.where(post_id: @post.id)
+    @likes = Like.where(post: @post)
     @user = User.find_by(id: @post.user_id)
   end
 
@@ -12,13 +12,16 @@ class LikesController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    Like.create(user_id: current_user.id, post_id: params[:post_id])
+    current_user.likes.create(post_id: params[:post_id])
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    Like.find_by(user_id: current_user.id, post_id: params[:post_id]).destroy
+    current_user.likes.find_by(post_id: params[:post_id]).destroy
   end
 
+  private
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
 end
