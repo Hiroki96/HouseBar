@@ -1,17 +1,17 @@
 .container.text-center
   .mt-5
     - if @user.image.attached?
-      = image_tag @user.image, class: "icon_image"
+      = image_tag @user.image, class: 'icon_image'
     - else
-      = image_tag 'default.jpg', class: "icon_image"
+      = image_tag 'default.jpg', class: 'icon_image'
     .mt-2
       = @user.name
     .mt-2
       = link_to "#{@user.likes.count}いいね", user_like_path(@user)
   .ml-5.mt-5
-    -if @user.likes.count == 0
+    -if @user.likes.count.zero?
       p まだいいねしている投稿はありません。
     -else
       - @likes.each do |like|
         = link_to post_path(like.post)
-          = image_tag like.post.image, class: "post" if like.post.image.attached?
+          = image_tag like.post.image, class: 'post' if like.post.image.attached?
