@@ -100,6 +100,14 @@ body {
     margin-top: 40px;
     font-size: 17px;
   }
+  .user_profile {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    p {
+      word-wrap: break-word;
+    }
+  }
   .attention {
     font-size: 15px;
   }
@@ -227,6 +235,16 @@ body {
 }
 .user-post {
   text-align: center;
+  .post-image {
+    .post-description {
+      margin-left: auto;
+      margin-right: auto;
+      width: 500px;
+      p {
+        word-wrap: break-word;
+      }
+    }
+  }
 }
 .post-img {
   text-align: right;
@@ -239,6 +257,14 @@ body {
   border: thin solid #666666;
   border-radius: 25px;
   background-color: #F7F7F7;
+  .comment-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    p{
+      word-wrap: break-word;
+    }
+  }
 }
 .likes {
   margin-top: 300px;
@@ -317,6 +343,8 @@ body {
   .post_description {
     display: inline-block;
     margin-left: 50px;
+    word-wrap: break-word;
+    width: 500px;
   }
   .health_contents {
     margin: 20px 0 30px 50px;
