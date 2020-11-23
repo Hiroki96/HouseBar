@@ -18,7 +18,8 @@
     .text-right
       div id ="likes_buttons_#{@post.id}"
         = render partial: "likes/like"
-    = simple_format(@post.description)
+    .post-description
+      = simple_format(@post.description)
     .text-right
       - if @user == current_user
         = link_to edit_post_path(@post.id) do
@@ -33,8 +34,8 @@
             = image_tag comment.user.image, class: "header_icon_image"
           -else
             = image_tag 'default.jpg', class: "header_icon_image"
-          = link_to "@#{comment.user.name}", user_path(comment.user.id)
-          .ml-5
+          = link_to "#{comment.user.name}", user_path(comment.user.id)
+          .ml-5.comment-content
             = simple_format(comment.content)
         .text-right.mr-2
           - if comment.user == current_user

@@ -6,8 +6,8 @@
       = image_tag 'default.jpg', class: "icon_image"
     br
     = @user.name
-    br
-    = simple_format(@user.profile)
+    .user_profile
+      = simple_format(@user.profile)
     .mt-2
       span id='following-count_#{ @user.id }'
         = link_to "#{ @user.follower.count }フォロー　", user_following_path(@user)
