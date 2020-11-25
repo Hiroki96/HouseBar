@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'timeline', to: 'posts#timeline'
   devise_for :users, :controllers => {:omniauth_callbacks => 'users/omniauth_callbacks'}
-
   resources :users, only: [:show, :edit, :update, :create] do
     resources :likes, only: [:show]
     get :following, :followers
@@ -17,5 +16,4 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy, :index]
   end
-
 end
