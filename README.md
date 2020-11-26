@@ -12,6 +12,7 @@ https://house-bar.herokuapp.com/
 * PostgreSQL
 ### 本番環境
 * heroku
+* AWS S3(画像の保存)
 # ・テーブル設計
 ![db_image](https://user-images.githubusercontent.com/67972760/95179779-11664480-07fc-11eb-917d-0024cf76cc7f.png)
 # ・機能一覧
