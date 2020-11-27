@@ -40,7 +40,6 @@
             = link_to post_path(post)
               = image_tag post.image, class: "posts" if post.image.attached?
             .text-left
-              = link_to "#{post.likes.count}", post_likes_path(post)
               = created_time(post.created_at)
             .text-center
               = simple_format(post.description)
