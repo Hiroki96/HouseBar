@@ -14,7 +14,7 @@
       br
     = image_tag @post.image.variant(resize:'700x700').processed if @post.image.attached?
     .text-right
-      = l @post.created_at
+      = created_time(@post.created_at)
     .text-right.mt-3
       = link_to post_path(@post.id), method: :delete, data: {confirm: '投稿を削除してもよろしいですか？'} do
         span class='far fa-trash-alt' style='color: red;' 削除
