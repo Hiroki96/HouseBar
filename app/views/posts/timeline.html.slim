@@ -14,13 +14,13 @@
           - else
             = image_tag 'default.jpg', class: "header_icon_image"
           = post.user.name
-        - unless post.user == current_user
+        //- unless post.user == current_user
           span.ml-2 id='follow-button_#{ post.user.id }'
             = render "users/follow-button", user: post.user
       .mt-2
         = link_to post_path(post)
           = image_tag post.image.variant(resize:'200x200').processed if post.image.attached?
-.container.text-center.mt-5
+.container.text-center
   - if @posts.any?
     .user-post
       .post-image.mt-5
@@ -41,7 +41,7 @@
               = image_tag post.image, class: "posts" if post.image.attached?
             .text-left
               = created_time(post.created_at)
-            .text-center
+            .text-left.post-description.mt-2
               = simple_format(post.description)
   -else
     p フォローしているユーザーはまだ投稿していません。

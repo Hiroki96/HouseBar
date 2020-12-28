@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @user = current_user
     @posts = Post.all.order(created_at: 'DESC').page(params[:page]).per(30)
     @q = Post.ransack(params[:q])
     @search_posts = @q.result(distinct: true).order(created_at: 'DESC')
