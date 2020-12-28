@@ -5,7 +5,7 @@
         = image_tag @user.image, class: "icon_image"
       - else
         = image_tag 'default.jpg', class: "icon_image"
-      .mt-1
+      .mt-1.mb-3
         = @user.name
     - PostCategoryRelationship.where(post_id: current_user.posts).group(:category_id).select('count(*) as count, category_id').each do |post_category_relationship|
       p #{post_category_relationship.category.name} #{post_category_relationship.count}杯
@@ -58,7 +58,7 @@
             .post_description
               = simple_format(post.description)
   .container.text-center.mb-5
-    table.mt-5 border=1 width="1100" height="250"
+    table.mt-5 border=1 width="100%" height="150px"
       tr
         th 血中濃度（％）
         th bgcolor = "#FFE3A0" ～0.04
@@ -79,7 +79,7 @@
   .container.text-center
     h1.title アルコール血中濃度とは？
     h2.content 飲酒した場合、アルコールの大部分は小腸から吸収され、小腸から一度肝臓を通って分解されたなかった分が血中へ流れて行き、その後肝臓で少しずつ分解されていきます。
-    table.mt-5 border=1 width="1100" height="250"
+    table.mt-5 border=1 width="100%" height="150px"
       tr
         th 血中濃度（％）
         th bgcolor = "#FFE3A0" ～0.04
@@ -97,7 +97,7 @@
         th bgcolor = "#FF541E" 泥酔
         th bgcolor = "#FF2E0E" 昏睡
     h2.mt-5 HouseBarではプロフィール設定画面にて体重を設定し、お酒を投稿する際にアルコール度数と量を指定すると血中濃度を自動で計算します。
-    .weight_button
+    .weight_button.mb-5
       = link_to edit_user_path(current_user) do
         span.border_orange 体重を設定する
   .footer

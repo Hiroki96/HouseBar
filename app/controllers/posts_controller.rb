@@ -4,6 +4,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(30)
+    @user = current_user
+    @posts = Post.all.order(created_at: 'DESC').page(params[:page]).per(30)
     @q = Post.ransack(params[:q])
     @search_posts = @q.result(distinct: true).order(created_at: :desc)
   end

@@ -15,3 +15,11 @@
       - @likes.each do |like|
         = link_to post_path(like.post)
           = image_tag like.post.image, class: 'post' if like.post.image.attached?
+  .mt-5
+    -if @user.likes.count == 0
+      p まだいいねしている投稿はありません。
+    -else
+      .phone-user-post
+        - @likes.each do |like|
+          = link_to post_path(like.post)
+            = image_tag like.post.image, class: "post" if like.post.image.attached?

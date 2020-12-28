@@ -11,7 +11,7 @@
     .text-center.description
       p.mt-5  お酒の説明やレシピを書きましょう！
       .field
-        = f.text_area :description, size: "50x10", placeholder: '※必須(500字以内)'
+        = f.text_area :description, size: "32x8", placeholder: '※必須(500字以内)'
       .field
         = f.file_field :image, accept: ".png,.jpeg,.jpg"
         span.must ※必須
