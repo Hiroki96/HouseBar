@@ -4,6 +4,9 @@
 Housebarはwithコロナの時代に家飲みをする人の人数の増加やアルコール依存症の検挙数の増加に伴い、自宅で飲むお酒の共有や投稿したお酒のアルコール血中濃度を自動で計算し健康管理できるサービスです。
 # ・URL
 https://house-bar.herokuapp.com/
+#### テストユーザー
+* メールアドレス　test@mail
+*  パスワード　　　password
 # ・技術スタック
 ### 言語・フレームワーク
 * Ruby 2.6.3
@@ -12,6 +15,7 @@ https://house-bar.herokuapp.com/
 * PostgreSQL
 ### 本番環境
 * heroku
+* AWS S3(画像の保存)
 # ・テーブル設計
 ![db_image](https://user-images.githubusercontent.com/67972760/95179779-11664480-07fc-11eb-917d-0024cf76cc7f.png)
 # ・機能一覧
