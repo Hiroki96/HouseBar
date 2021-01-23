@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :image
   validates :name, presence: true, length: { maximum: 20 }
+  validates :weight, numericality: {greater_than: 0, allow_blank: true}
+  #validates :weight, :numericality => { :allow_blank => true }
 
   def self.find_for_oauth(auth)
     user = User.find_by(uid: auth.uid, provider: auth.provider)
@@ -21,6 +23,7 @@ class User < ApplicationRecord
         uid: auth.uid,
         provider: auth.provider,
         name: auth[:info][:name],
+        weight: nil,
         email: User.dummy_email(auth),
         password: Devise.friendly_token[0, 20]
     )

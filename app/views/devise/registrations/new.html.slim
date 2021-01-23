@@ -18,9 +18,9 @@
         br
         = f.text_field :name, autofocus: true, autocomplete: "name", :placeholder => "user name"
       .field
-        = f.label :image, accept: ".png,.jpeg,.jpg"
+        = f.label :image
         br
-        = f.file_field :image, :size=>"45x10"
+        = f.file_field :image, :size=>"45x10", accept: ".png,.jpeg,.jpg"
       .field
         = f.label :password
         - if @minimum_password_length

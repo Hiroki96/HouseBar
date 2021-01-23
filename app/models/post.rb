@@ -7,7 +7,8 @@ class Post < ApplicationRecord
   has_one_attached :image
   validates :image, :alcohol, :amount, presence: true
   validates :description, presence: true, length: { maximum: 500 }
-  validates :alcohol, numericality: { less_than: 100 }
+  validates :alcohol, numericality: {less_than: 100}
+  validates :alcohol, numericality: {greater_than: 0 }
 
   def liked?(current_user)
     likes.where(user: current_user).exists?
