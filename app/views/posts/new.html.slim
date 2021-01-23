@@ -1,7 +1,7 @@
 .container
   = form_with model: @post, local: true do |f|
     = render 'layouts/error_messages', model: f.object
-    .field.float-left.ml-5
+    .field.float-left.ml-5.category-field
       = f.label :category, 'カテゴリー'
       = f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category|
         br
@@ -9,9 +9,9 @@
           = category.check_box
           = category.text
     .text-center.description
-      p.mt-5  お酒の説明やレシピを書きましょう！
+      //p.mt-5  お酒の説明やレシピを書きましょう！
       .field
-        = f.text_area :description, size: "32x8", placeholder: '※必須(500字以内)'
+        = f.text_area :description, size: "32x8", placeholder: 'お酒の説明やレシピを書きましょう！'
       .field
         = f.file_field :image, accept: ".png,.jpeg,.jpg"
         span.must ※必須
@@ -29,6 +29,5 @@
         br
         = f.number_field :alcohol, placeholder: '度数(%)'
         span %
-      .actions.mt-5
+      .actions.mt-5.mb-3
         = f.submit "投稿する"
-.footer

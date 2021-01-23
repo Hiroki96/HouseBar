@@ -13,6 +13,7 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
+  config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'], :image_size => 'original'
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '485dcac0ce25d4fa30d847637feb19a29dba42a7380a13ea73d8878430898acc2ce6ff5a14ac63bf4a7d4e2be20f8ddee2086e4c19bc0afef2d829117a1a145c'
   config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], scope: 'email', oauth_callback: "https://house-bar.herokuapp.com/users/auth/twitter/callback"
