@@ -1,4 +1,4 @@
-.container
+.container.pb-5
   = form_with model: @post, local: true do |f|
     = render 'layouts/error_messages', model: f.object
     .field.float-left.ml-5.category-field
@@ -29,5 +29,5 @@
         br
         = f.number_field :alcohol, placeholder: '度数(%)'
         span %
-      .actions.mt-5.mb-3
+      .actions.mt-5
         = f.submit "投稿する"

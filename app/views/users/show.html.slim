@@ -10,7 +10,7 @@
       li.border_orange = link_to edit_user_path(current_user) do
         span class= 'fas fa-cog'  ユーザー
       li.border_orange = link_to destroy_user_session_path, method: :delete do
-        sapn class= 'fas fa-sign-out-alt' ログアウト
+        span class= 'fas fa-sign-out-alt' ログアウト
     br
   = render 'users/user', current_user: @user
 -else

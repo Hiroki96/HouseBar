@@ -6,9 +6,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      flash[:notice] = "コメントしました"
       redirect_to post_path(params[:post_id])
-    else
-      #TODO エラーの場合の処理を追加したい
     end
   end
 

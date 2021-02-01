@@ -344,7 +344,7 @@ body {
   }
 }
 .phone-comment {
-  display: none;
+  //display: none;
 }
 .likes {
   margin-top: 300px;
@@ -413,6 +413,13 @@ body {
     font-size: 24px;
   }
 }
+.alcohol-count {
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .health {
   border: thin solid #666666;
   border-radius: 25px;
@@ -585,7 +592,7 @@ body {
   }
   .phone-user-post {
     //width: 380px;
-    text-align: left;
+    text-align: center;
     img {
       display: inline-block;
       width: 32%;
